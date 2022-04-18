@@ -2,7 +2,7 @@ import Image from "next/image"
 
 const Navbar = () => {
 	return (
-		<div className="absolute  w-full h-8 bg-white/[.15] z-10	">
+		<div className="w-full h-8 bg-white/[.15] z-10	">
 			<div className="pl-10 pt-[1px]">
 				<Image
 					src="/icons/logomariachon.png"
