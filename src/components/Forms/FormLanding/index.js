@@ -2,7 +2,7 @@ import React from "react"
 
 const FormLanding = () => {
 	return (
-		<form className="flex flex-col justify-center z-10 w-[250px] h-[70vh] py-5 px-7 text-xs m-10 bg-[#EDEDEDBF] rounded-2xl">
+		<form className="flex flex-col justify-center z-10 w-[350px] h-[60vh] py-5 px-7 text-xs m-10 bg-[#EDEDEDBF] rounded-2xl">
 			<div className="mb-2">
 				<h3 className="text-center text-base font-bold text-[#96090C]">
 					Contrata fácil y rápido
