@@ -49,7 +49,7 @@ const index = () => {
 	console.log(region)
 
 	return (
-		<div>
+		<div className="container">
 			<Header data={estado.header} />
 			<Section01 />
 			<Section02 />
