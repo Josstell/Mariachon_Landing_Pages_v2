@@ -1,7 +1,6 @@
 import { useState, useRef } from "react"
 import Link from "next/link"
 import Head from "next/head"
-import HCaptcha from "@hcaptcha/react-hcaptcha"
 
 const data = [
 	{
@@ -42,7 +41,6 @@ const data = [
 export default function Home() {
 	console.log(data[0].region)
 	const [email, setEmail] = useState("")
-	const hcaptchaRef = useRef(null)
 
 	const handleChange = ({ target: { value } }) => {
 		setEmail(value)
@@ -50,13 +48,13 @@ export default function Home() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		// Execute the hCaptcha when the form is submitted
-		hcaptchaRef.current.execute()
+		// Execute the reCAPTCHA when the form is submitted
+		recaptchaRef.current.execute()
 	}
 
-	const onHCaptchaChange = async (captchaCode) => {
-		// If the hCaptcha code is null or undefined indicating that
-		// the hCaptcha was expired then return early
+	const onReCAPTCHAChange = async (captchaCode) => {
+		// If the reCAPTCHA code is null or undefined indicating that
+		// the reCAPTCHA was expired then return early
 		if (!captchaCode) {
 			return
 		}
@@ -80,21 +78,21 @@ export default function Home() {
 		} catch (error) {
 			alert(error?.message || "Something went wrong")
 		} finally {
-			// Reset the hCaptcha when the request has failed or succeeeded
+			// Reset the reCAPTCHA when the request has failed or succeeeded
 			// so that it can be executed again if user submits another email.
+			recaptchaRef.current.reset()
 			setEmail("")
 		}
 	}
 
+	console.log("key:  ", process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY)
 	return (
 		<>
 			<Link
-				href={{
-					pathname: "/[slug]",
-					query: { slug: data[0].region },
-				}}
+				className="text-3xl font-bold underline"
+				href={`/[${data[0].region}]`}
 			>
-				<a className="text-3xl font-bold underline">queretaro</a>
+				queretaro
 			</Link>
 			<div className="container">
 				<Head>
@@ -105,13 +103,6 @@ export default function Home() {
 					<h2 className="header">Hello hCaptcha</h2>
 					<div>
 						<form onSubmit={handleSubmit}>
-							<HCaptcha
-								id="test"
-								size="invisible"
-								ref={hcaptchaRef}
-								sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY}
-								onVerify={onHCaptchaChange}
-							/>
 							<input
 								onChange={handleChange}
 								required

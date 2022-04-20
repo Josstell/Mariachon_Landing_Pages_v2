@@ -1,9 +1,13 @@
 import React from "react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 import { useForm } from "react-hook-form"
 
+import ReCAPTCHA from "react-google-recaptcha"
+
 const FormLanding = () => {
+	const recaptchaRef = useRef(null)
+
 	const {
 		register,
 		handleSubmit,
@@ -93,6 +97,11 @@ const FormLanding = () => {
 					</span>
 				)}
 			</div>
+			<ReCAPTCHA
+				ref={recaptchaRef}
+				size="invisible"
+				sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+			/>
 
 			<button
 				type="submit"

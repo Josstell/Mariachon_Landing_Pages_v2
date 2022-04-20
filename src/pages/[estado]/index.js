@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useRef } from "react"
 import { useRouter } from "next/router"
 import Dispo from "../../components/LandingPages/Dispo"
 import FooterLanding from "../../components/LandingPages/Footer"
@@ -40,9 +42,9 @@ const estado = {
 		"Todos los derechos reservados © 2022 Mariachon. Política de Privacidad",
 }
 
-const index = () => {
-	// eslint-disable-next-line react-hooks/rules-of-hooks
+const region = () => {
 	const router = useRouter()
+	//const recaptchaRef = useRef(null)
 
 	const { region } = router.query
 
@@ -51,6 +53,11 @@ const index = () => {
 	return (
 		<div className="container">
 			<Header data={estado.header} />
+			{/* <ReCAPTCHA
+					ref={recaptchaRef}
+					size="invisible"
+					sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+				/> */}
 			<Section01 />
 			<Section02 />
 			<Dispo />
@@ -59,4 +66,4 @@ const index = () => {
 	)
 }
 
-export default index
+export default region
