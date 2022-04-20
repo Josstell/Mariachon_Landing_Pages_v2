@@ -90,7 +90,7 @@ export default function Home() {
 		<>
 			<Link
 				className="text-3xl font-bold underline"
-				href={`/[${data[0].region}]`}
+				href={`/${data[0].region}`}
 			>
 				queretaro
 			</Link>

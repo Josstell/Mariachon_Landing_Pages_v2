@@ -51,15 +51,12 @@ const region = () => {
 	console.log(region)
 
 	return (
-		<div className="container">
+		<div>
 			<Header data={estado.header} />
-			{/* <ReCAPTCHA
-					ref={recaptchaRef}
-					size="invisible"
-					sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-				/> */}
+
 			<Section01 />
 			<Section02 />
+
 			<Dispo />
 			<FooterLanding />
 		</div>

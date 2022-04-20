@@ -2,7 +2,7 @@ import React from "react"
 
 const Section02 = () => {
 	return (
-		<div className="flex flex-col h-[90vh] justify-center">
+		<div className="w-full flex flex-col h-[90vh] justify-center">
 			<div className="w-[50vw]">
 				<h2 className="text-5xl text-right 	">
 					<span className="font-bold text-[#960909]">Mariachis </span>

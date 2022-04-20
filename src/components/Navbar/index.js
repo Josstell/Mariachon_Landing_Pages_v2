@@ -6,6 +6,7 @@ const Navbar = () => {
 			<div className="pl-10 pt-[1px]">
 				<Image
 					src="/icons/logomariachon.png"
+					alt=""
 					layout="fixed"
 					width={61}
 					height={26}

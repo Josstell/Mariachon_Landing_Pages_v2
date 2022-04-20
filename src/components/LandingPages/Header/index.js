@@ -6,7 +6,7 @@ import Navbar from "../../Navbar"
 const Header = ({ data }) => {
 	console.log("daros", data)
 	return (
-		<div className="flex flex-col justify-between items-end	w-full h-screen bg-green-800 ">
+		<div className=" relative flex flex-col justify-between items-end	 h-[100vh] bg-black ">
 			<Image src={data.img} layout="fill" alt="" objectFit="cover" />
 			<Navbar />
 			<FormLanding />
