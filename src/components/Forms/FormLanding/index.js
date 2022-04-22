@@ -3,28 +3,96 @@ import { useState, useRef } from "react"
 
 import { useForm } from "react-hook-form"
 
+import { nanoid } from "@reduxjs/toolkit"
+
 import ReCAPTCHA from "react-google-recaptcha"
 
-const FormLanding = () => {
+const FormLanding = (props) => {
 	const recaptchaRef = useRef(null)
+
+	const [dataClient, setDataClient] = useState({})
 
 	const {
 		register,
+		resetField,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm()
-	const onSubmit = (data) => console.log(data)
-	console.log(watch())
+	//	const onSubmit = (data) => data
 
-	const [fecha, setFecha] = useState("")
-	const [hora, setHora] = useState("")
-	const [nombre, setNombre] = useState("")
-	const [tel, setTel] = useState("")
+	const onSubmit = (data, e) => {
+		e.preventDefault()
+
+		setDataClient({ id: nanoid(), ...data })
+
+		recaptchaRef.current.execute()
+	}
+
+	const onReCAPTCHAChange = async (captchaCode) => {
+		// If the reCAPTCHA code is null or undefined indicating that
+		// the reCAPTCHA was expired then return early
+
+		if (!captchaCode) {
+			return
+		}
+		try {
+			const response = await fetch("/api/register", {
+				method: "POST",
+				body: JSON.stringify({ dataClient, captcha: captchaCode }),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+			if (response.ok) {
+				// If the response is ok than show the success alert
+				resetForm()
+				addLeadToGoogleSheet(dataClient)
+
+				alert("Sus datos fueron bien registrados")
+			} else {
+				// Else throw an error with the message returned
+				// from the API
+				const error = await response.json()
+				throw new Error(error.message)
+			}
+		} catch (error) {
+			alert(error?.message || "Hubo un error favor de intentar más tarde.")
+		} finally {
+			// Reset the reCAPTCHA when the request has failed or succeeeded
+			// so that it can be executed again if user submits another email.
+			recaptchaRef.current.reset()
+
+			setDataClient({})
+		}
+	}
+
+	const resetForm = () => {
+		resetField("dateOfEvent")
+		resetField("timeOfEvent")
+		resetField("tel")
+		resetField("email")
+		resetField("name")
+	}
+
+	const addLeadToGoogleSheet = async (Client) => {
+		try {
+			const response = await fetch("/api/google-sheet/add", {
+				method: "POST",
+				body: JSON.stringify(Client),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+
+			const validation = await response.json()
+
+			console.log(validation.message)
+		} catch (error) {}
+	}
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col justify-center z-10 w-[350px] h-[60vh] py-5 px-7 text-xs m-10 bg-[#EDEDEDBF] rounded-2xl"
+			className="flex flex-col justify-center z-10 w-fit h-fit py-10 px-10 text-xs m-10 bg-[#EDEDEDBF] rounded-2xl"
 		>
 			<div className="mb-2">
 				<h3 className="text-center text-base font-bold text-[#96090C]">
@@ -35,23 +103,23 @@ const FormLanding = () => {
 			<div className="mb-2 flex justify-around">
 				<input
 					type="date"
-					{...register("dates", { required: true })}
+					{...register("dateOfEvent", { required: true })}
 					className="bg-gray-50 text-[11px] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block w-full p-1 "
 					placeholder="Fecha"
 				/>
 				<input
 					type="time"
-					{...register("times", { required: true })}
+					{...register("timeOfEvent", { required: true })}
 					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block w-full p-1  ml-1"
 					placeholder="Hora"
 				/>
 			</div>
-			{errors.times && (
+			{errors.timeOfEvent && (
 				<span className="text-red-500 text-[10px]">
 					Hora del evento es requerida.
 				</span>
 			)}
-			{errors.dates && (
+			{errors.dateOfEvent && (
 				<span className="text-red-500 text-[10px]">
 					Fecha del evento es requerida.
 				</span>
@@ -62,7 +130,7 @@ const FormLanding = () => {
 					type="text"
 					{...register("name", { required: true })}
 					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#B66400] focus:border-[#E66400] block w-full p-1 "
-					placeholder="Nombre completo"
+					placeholder="Nombre completo."
 				/>
 				{errors.name && (
 					<span className="text-red-500 text-[10px]">Nombre requerido</span>
@@ -70,7 +138,7 @@ const FormLanding = () => {
 			</div>
 			<div className="mb-3">
 				<input
-					type="number"
+					type="tel"
 					{...register("tel", {
 						required: true,
 						pattern: /^[0-9\b]+$/i,
@@ -97,10 +165,28 @@ const FormLanding = () => {
 					</span>
 				)}
 			</div>
+			<div className="mb-3">
+				<input
+					type="email"
+					{...register("email", {
+						pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+					})}
+					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#B66400] focus:border-[#E66400] block w-full p-1 "
+					placeholder="Email (opcional)."
+				/>
+				{errors.email?.type === "pattern" && (
+					<span className="text-red-500 text-[10px]">
+						Hubo un error en su correo, favor de revizarlo. <br />
+						<br />
+					</span>
+				)}
+			</div>
+
 			<ReCAPTCHA
 				ref={recaptchaRef}
 				size="invisible"
 				sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+				onChange={onReCAPTCHAChange}
 			/>
 
 			<button
