@@ -23,7 +23,12 @@ const FormLanding = (props) => {
 	const onSubmit = (data, e) => {
 		e.preventDefault()
 
-		setDataClient({ id: nanoid(), ...data })
+		setDataClient({
+			...data,
+			id: nanoid(),
+			region: "Queretaro",
+			city: "Cobertura ciudad de Santiago de Queretaro",
+		})
 
 		recaptchaRef.current.execute()
 	}
@@ -45,8 +50,10 @@ const FormLanding = (props) => {
 			})
 			if (response.ok) {
 				// If the response is ok than show the success alert
-				resetForm()
 				addLeadToGoogleSheet(dataClient)
+				sendEmailToAdminAndClient(dataClient)
+				addLeadToHubSpot(dataClient)
+				resetForm()
 
 				alert("Sus datos fueron bien registrados")
 			} else {
@@ -79,6 +86,38 @@ const FormLanding = (props) => {
 			const response = await fetch("/api/google-sheet/add", {
 				method: "POST",
 				body: JSON.stringify(Client),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+
+			const validation = await response.json()
+
+			console.log(validation.message)
+		} catch (error) {}
+	}
+
+	const sendEmailToAdminAndClient = async (client) => {
+		try {
+			const response = await fetch("/api/email/sendEmail", {
+				method: "POST",
+				body: JSON.stringify(client),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+
+			const validation = await response.json()
+
+			console.log(validation.message)
+		} catch (error) {}
+	}
+
+	const addLeadToHubSpot = async (client) => {
+		try {
+			const response = await fetch("/api/hubspot/addNewContact", {
+				method: "POST",
+				body: JSON.stringify(client),
 				headers: {
 					"Content-Type": "application/json",
 				},

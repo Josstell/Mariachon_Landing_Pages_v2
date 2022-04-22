@@ -10,7 +10,7 @@ const handler = (req, res) => {
 			method: "PUT", // or 'PUT'
 			headers: {
 				"Content-Type": "application/json",
-				authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_SENDING_GRID}`,
+				authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
 			},
 			body: JSON.stringify(req.body),
 		})

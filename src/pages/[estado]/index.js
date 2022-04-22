@@ -11,6 +11,8 @@ import Navbar from "../../components/Navbar"
 const estado = {
 	id: 0,
 	region: "Queretaro",
+	city: "Cobertura ciudad de Santiago de Queretaro",
+
 	header: {
 		img: "/images/queretaro/mariachisenqueretaro.jpg",
 		form: {
