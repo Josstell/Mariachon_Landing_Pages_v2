@@ -14,10 +14,8 @@ const newLead = (req, res) => {
 
 	let emailToSend =
 		req.body.email === ""
-			? ["admin@mariachiangelopolis.com", "jjtellezg@gmail.com"]
-			: ["admin@mariachiangelopolis.com", "jjtellezg@gmail.com", req.body.email]
-
-	console.log("sendEmail", dataSend, emailToSend)
+			? ["informes@mariachon.com", "xonitg@gmail.com"]
+			: ["informes@mariachon.com", "xonitg@gmail.com", req.body.email]
 
 	if (req.method === "POST") {
 		const msg = {
