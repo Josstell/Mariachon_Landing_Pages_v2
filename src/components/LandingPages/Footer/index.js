@@ -4,14 +4,14 @@ import React from "react"
 const FooterLanding = () => {
 	return (
 		<div className="w-full h-[50vh] bg-white flex flex-col justify-end	">
-			<div className="w-[25vw] flex justify-center mb-8">
+			<div className=" flex justify-center items-center mb-8">
 				<div className="px-1">
 					<Image
 						src="/icons/facebook.png"
 						alt=""
 						layout="fixed"
-						width="20"
-						height="20"
+						width="50"
+						height="50"
 					/>
 				</div>
 				<div className="px-1">
@@ -19,8 +19,8 @@ const FooterLanding = () => {
 						src="/icons/instagram.png"
 						alt=""
 						layout="fixed"
-						width="20"
-						height="20"
+						width="50"
+						height="50"
 					/>{" "}
 				</div>
 
@@ -29,13 +29,13 @@ const FooterLanding = () => {
 						src="/icons/whatsapp.png"
 						alt=""
 						layout="fixed"
-						width="20"
-						height="20"
-					/>{" "}
+						width="50"
+						height="50"
+					/>
 				</div>
 			</div>
 			<div>
-				<p className="text-right mr-20 mb-2	text-[8px]	">
+				<p className="text-center  mb-4	text-[11px]	">
 					Todos los derechos reservados © 2022 Mariachon. Política de
 					Privacidad.
 				</p>

@@ -1,17 +1,22 @@
 import Image from "next/image"
 import React from "react"
+import { isMobile } from "react-device-detect"
 
 const Dispo = () => {
 	return (
-		<div className=" w-full h-[80vh] relative  flex flex-col justify-center items-end	">
+		<div className=" w-full h-[100vh] relative  flex flex-col justify-center items-end	">
 			<Image
 				className="-z-10"
-				src="/images/queretaro/preciosmariachisenqueretaro.jpg"
+				src={
+					isMobile
+						? `/images/queretaro/mariachisenpuebla_mobile.jpg`
+						: "/images/queretaro/preciosmariachisenqueretaro.jpg"
+				}
 				layout="fill"
 				alt=""
-				objectFit="cover"
+				objectFit="contain"
 			/>
-			<button className="mr-36 px-10 py-1 cursor-pointer	 border-2 rounded-2xl text-center text-white 	">
+			<button className="mr-4 px-20 py-3 cursor-pointer	 border-4 rounded-full text-center text-white 	">
 				Disponibilidad
 			</button>
 		</div>
