@@ -8,11 +8,12 @@ import { isMobile } from "react-device-detect"
 const Header = ({ data }) => {
 	console.log("daros", data)
 	return (
-		<div className=" relative flex flex-col justify-between items-center	 h-[100vh] bg-black ">
+		<div className="move-image relative sm:no-move-image flex flex-col justify-between items-center	 h-[100vh] bg-black ">
 			<Image
-				src={
-					isMobile ? `/images/queretaro/mariachon_mobile.jpg` : `${data.img}`
-				}
+				// src={
+				// 	isMobile ? `/images/queretaro/mariachon_mobile.jpg` : `${data.img}`
+				// }
+				src={data.img}
 				layout="fill"
 				alt=""
 				objectFit="cover"

@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+.move-image> span> img {
+        object-position: 27%;
+    }
+
+.no-move-image>span>img {
+        object-position: 50% 50%;
+    }
+
+
