@@ -2,7 +2,7 @@ import Image from "next/image"
 import { isMobile } from "react-device-detect"
 
 const Navbar = () => {
-	console.log("Mobile".isMobile)
+	console.log("Mobile", isMobile)
 	return (
 		<div className="flex justify-center w-full h-10 lg:bg-white/[.15] z-10	">
 			<div className="pl-0 mt-7 pt-[1px] ">

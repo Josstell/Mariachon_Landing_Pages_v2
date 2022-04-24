@@ -131,7 +131,7 @@ const FormLanding = (props) => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col justify-center items-center z-10 w-10/12	 h-fit py-10 px-12 text-xs mx-20  mb-20 bg-[#EDEDEDDF] rounded-[40px]"
+			className="flex flex-col justify-center items-center z-10 w-10/12	 h-fit py-8 px-12 text-xs mx-20  mb-8 bg-[#EDEDEDDF] rounded-[40px]"
 		>
 			<div className="mb-8">
 				<h3 className="font-sans text-center text-2xl font-bold text-[#96090C]">
@@ -140,7 +140,7 @@ const FormLanding = (props) => {
 			</div>
 
 			<div className="flex flex-col w-11/12		justify-between ">
-				<div className="mb-4 w-full flex justify-around">
+				<div className="mb-3 w-full flex justify-around">
 					<input
 						type="date"
 						{...register("dateOfEvent", { required: true })}
@@ -165,7 +165,7 @@ const FormLanding = (props) => {
 						Fecha del evento es requerida.
 					</span>
 				)}
-				<div className="mb-4">
+				<div className="mb-3">
 					<input
 						type="text"
 						{...register("name", { required: true })}
@@ -176,7 +176,7 @@ const FormLanding = (props) => {
 						<span className="text-red-500 text-[10px]">Nombre requerido</span>
 					)}
 				</div>
-				<div className="mb-4">
+				<div className="mb-3">
 					<input
 						type="tel"
 						{...register("tel", {
@@ -231,7 +231,7 @@ const FormLanding = (props) => {
 
 				<button
 					type="submit"
-					className="font-sans text-white bg-[#E66400] hover:bg-[#FF6400] focus:ring-4 focus:outline-none focus:ring-[#B66400] font-normal	  text-sm w-full sm:w-auto px-5 py-3.5 my-8 text-center rounded-full"
+					className="font-sans text-white bg-[#E66400] hover:bg-[#FF6400] focus:ring-4 focus:outline-none focus:ring-[#B66400] font-normal	  text-sm w-full sm:w-auto px-5 py-3 my-8 text-center rounded-full"
 				>
 					Disponibilidad
 				</button>
