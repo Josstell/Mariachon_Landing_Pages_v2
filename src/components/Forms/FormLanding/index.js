@@ -154,7 +154,7 @@ const FormLanding = (props) => {
 						className="form-input font-sans bg-gray-50 text-[11px] md:text-[11px] 2xl:text-xl border border-gray-300 text-black  rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1  lg:py-2 2xl:py-4 w-2/4 2xl:w-2/4"
 					/>
 					{isMobile && (
-						<CalendarIcon className="h-6 w-6 ml-1 mr-1.5  text-black" />
+						<CalendarIcon className="h-5 w-5 ml-1 mr-1.5  text-black" />
 					)}
 					{isMobile ? (
 						<div className="w-0"></div>
@@ -167,7 +167,7 @@ const FormLanding = (props) => {
 						className="form-input font-sans bg-gray-50 border border-gray-300 text-black text-[12px] md:text-[11px] 2xl:text-xl rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1   lg:py-2 w-2/4 2xl:w-2/4"
 					/>
 					{isMobile && (
-						<ClockIcon className="h-6 w-6  ml-1 mr-1.5  text-black" />
+						<ClockIcon className="h-5 w-5  ml-1 mr-1.5  text-black" />
 					)}
 				</div>
 				{errors.timeOfEvent && (
