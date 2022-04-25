@@ -138,7 +138,7 @@ const FormLanding = (props) => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col justify-center items-center  z-10 w-10/12 sm:w-fit 2xl:w-[40vw] h-fit sm:h-[80vh] lg:h-fit py-3 sm:py-7 px-1 md:px-2  mx-2  mb-3 lg:mb-10 lg:mr-10 bg-[#EDEDEDDF] rounded-[40px] sm:ml-[45vw] "
+			className="flex flex-col justify-center items-center  z-10 w-10/12 sm:w-fit lg:w-[40vw]  h-fit sm:h-[80vh] lg:h-fit py-3 sm:py-7 px-1 md:px-2  mx-2  mb-3 lg:mb-10 lg:mr-10 bg-[#EDEDEDDF] rounded-[40px] sm:ml-[45vw] "
 		>
 			<div className="mb-1  lg:mb-8 2xl:my-10">
 				<h3 className="font-sans text-center text-xl sm:text-xl lg:text-2xl 2xl:text-6xl font-bold text-[#96090C]">
