@@ -142,7 +142,10 @@ const FormLanding = (props) => {
 			<div className="flex flex-col w-10/12		justify-between ">
 				<div className="mb-2 2xl:mb-6 w-full flex justify-between">
 					<input
-						type="date"
+						type="text"
+						placeholder="MM/DD/YYYY"
+						onFocus={(this.type = "date")}
+						onBlur={(this.type = "text")}
 						{...register("dateOfEvent", { required: true })}
 						className="font-sans bg-gray-50 text-[11px] md:text-[11px] 2xl:text-xl border border-gray-300 text-black  rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1  lg:py-2 2xl:py-4 w-2/4 2xl:w-2/4"
 					/>
