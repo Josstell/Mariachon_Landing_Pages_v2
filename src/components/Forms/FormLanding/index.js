@@ -144,15 +144,13 @@ const FormLanding = (props) => {
 					<input
 						type="date"
 						{...register("dateOfEvent", { required: true })}
-						className="font-sans bg-gray-50 text-[11px] md:text-[11px] 2xl:text-xl border border-gray-300 text-gray-900  rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1  lg:py-2 2xl:py-4 w-2/4 2xl:w-2/4"
-						placeholder="Fecha"
+						className="font-sans bg-gray-50 text-[11px] md:text-[11px] 2xl:text-xl border border-gray-300 text-black  rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1  lg:py-2 2xl:py-4 w-2/4 2xl:w-2/4"
 					/>
 					<div className="w-[5px]"></div>
 					<input
 						type="time"
 						{...register("timeOfEvent", { required: true })}
-						className="font-sans bg-gray-50 border border-gray-300 text-gray-900 text-[12px] md:text-[11px] 2xl:text-xl rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1   lg:py-2 w-2/4 2xl:w-2/4"
-						placeholder="Hora"
+						className="font-sans bg-gray-50 border border-gray-300 text-black text-[12px] md:text-[11px] 2xl:text-xl rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1   lg:py-2 w-2/4 2xl:w-2/4"
 					/>
 				</div>
 				{errors.timeOfEvent && (
