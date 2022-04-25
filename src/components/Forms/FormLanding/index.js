@@ -138,7 +138,7 @@ const FormLanding = (props) => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col justify-center items-center  z-10 w-10/12 sm:w-fit 2xl:w-[40vw] h-fit sm:h-[80vh] lg:h-fit py-3 sm:py-7 px-1 md:px-2  mx-2 md:mx-5  mb-3 lg:mb-10 bg-[#EDEDEDDF] rounded-[40px] sm:ml-[45vw] "
+			className="flex flex-col justify-center items-center  z-10 w-10/12 sm:w-fit 2xl:w-[40vw] h-fit sm:h-[80vh] lg:h-fit py-3 sm:py-7 px-1 md:px-2  mx-2  mb-3 lg:mb-10 lg:mr-10 bg-[#EDEDEDDF] rounded-[40px] sm:ml-[45vw] "
 		>
 			<div className="mb-1  lg:mb-8 2xl:my-10">
 				<h3 className="font-sans text-center text-xl sm:text-xl lg:text-2xl 2xl:text-6xl font-bold text-[#96090C]">
@@ -154,7 +154,7 @@ const FormLanding = (props) => {
 						className="form-input font-sans bg-gray-50 text-[11px] md:text-[11px] 2xl:text-xl border border-gray-300 text-black  rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1  lg:py-2 2xl:py-4 w-2/4 2xl:w-2/4"
 					/>
 					{isMobile && (
-						<CalendarIcon className="h-7 w-7 ml-1 mr-1.5  text-black" />
+						<CalendarIcon className="h-5.5 w-5.5 ml-1 mr-1.5  text-black" />
 					)}
 					{isMobile ? (
 						<div className="w-0"></div>
@@ -167,7 +167,7 @@ const FormLanding = (props) => {
 						className="form-input font-sans bg-gray-50 border border-gray-300 text-black text-[12px] md:text-[11px] 2xl:text-xl rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1   lg:py-2 w-2/4 2xl:w-2/4"
 					/>
 					{isMobile && (
-						<ClockIcon className="h-7 w-7  ml-1 mr-1.5  text-black" />
+						<ClockIcon className="h-5.5 w-5.5  ml-1 mr-1.5  text-black" />
 					)}
 				</div>
 				{errors.timeOfEvent && (
