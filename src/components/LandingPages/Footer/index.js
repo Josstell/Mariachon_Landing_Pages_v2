@@ -7,7 +7,7 @@ const FooterLanding = () => {
 			<div className=" flex justify-center xl:justify-start xl:ml-20 xl:mb-20 items-center mb-8">
 				<div className="px-1">
 					<Image
-						src="/icons/facebook.png"
+						src="/icons/facebook.svg"
 						alt=""
 						layout="fixed"
 						width="50"
@@ -16,7 +16,7 @@ const FooterLanding = () => {
 				</div>
 				<div className="px-1">
 					<Image
-						src="/icons/instagram.png"
+						src="/icons/instagram.svg"
 						alt=""
 						layout="fixed"
 						width="50"
@@ -26,7 +26,7 @@ const FooterLanding = () => {
 
 				<div className="px-1">
 					<Image
-						src="/icons/whatsapp.png"
+						src="/icons/whatsapp.svg"
 						alt=""
 						layout="fixed"
 						width="50"

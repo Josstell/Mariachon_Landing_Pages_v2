@@ -151,7 +151,7 @@ const FormLanding = (props) => {
 					<input
 						type="date"
 						{...register("dateOfEvent", { required: true })}
-						className="font-sans bg-gray-50 text-[11px] md:text-[11px] 2xl:text-xl border border-gray-300 text-black  rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1  lg:py-2 2xl:py-4 w-2/4 2xl:w-2/4"
+						className="form-input font-sans bg-gray-50 text-[11px] md:text-[11px] 2xl:text-xl border border-gray-300 text-black  rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1  lg:py-2 2xl:py-4 w-2/4 2xl:w-2/4"
 					/>
 					{isMobile && <CalendarIcon className="h-5 w-5 pl-1 text-black" />}
 					{isMobile ? (
@@ -162,7 +162,7 @@ const FormLanding = (props) => {
 					<input
 						type="time"
 						{...register("timeOfEvent", { required: true })}
-						className="font-sans bg-gray-50 border border-gray-300 text-black text-[12px] md:text-[11px] 2xl:text-xl rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1   lg:py-2 w-2/4 2xl:w-2/4"
+						className="form-input font-sans bg-gray-50 border border-gray-300 text-black text-[12px] md:text-[11px] 2xl:text-xl rounded-lg focus:ring-[#E66400] focus:border-[#E66400] block  py-1   lg:py-2 w-2/4 2xl:w-2/4"
 					/>
 					{isMobile && <ClockIcon className="h-5 w-5 pl-1 text-black" />}
 				</div>
