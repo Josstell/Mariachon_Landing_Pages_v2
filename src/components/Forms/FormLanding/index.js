@@ -7,7 +7,7 @@ import { nanoid } from "@reduxjs/toolkit"
 
 import { isMobile } from "react-device-detect"
 
-import { CalendarIcon, ClockIcon } from "@heroicons/react/Outline"
+import { CalendarIcon, ClockIcon } from "@heroicons/react/outline"
 
 import ReCAPTCHA from "react-google-recaptcha"
 
