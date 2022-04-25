@@ -3,10 +3,9 @@ import React from "react"
 import FormLanding from "../../Forms/FormLanding"
 import Navbar from "../../Navbar"
 import { isMobile } from "react-device-detect"
-
 //width={1920} height={1080}
 const Header = ({ data }) => {
-	console.log("daros", data)
+	console.log("Es Mobile: ", isMobile)
 	return (
 		<div className="move-image relative sm:no-move-image flex flex-col justify-between items-center	 h-[100vh] bg-black ">
 			<Image
