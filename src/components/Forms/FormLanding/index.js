@@ -11,7 +11,7 @@ import { CalendarIcon, ClockIcon } from "@heroicons/react/outline"
 
 import ReCAPTCHA from "react-google-recaptcha"
 
-const FormLanding = (props) => {
+const FormLanding = ({ data }) => {
 	const recaptchaRef = useRef(null)
 
 	const [dataClient, setDataClient] = useState({})
@@ -138,11 +138,11 @@ const FormLanding = (props) => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col justify-center items-center  z-10 w-10/12 sm:w-fit lg:w-[40vw]  h-fit sm:h-[80vh] lg:h-fit py-3 sm:py-7 px-1 md:px-2  mx-2  mb-3 lg:mb-10 lg:mr-10 bg-[#EDEDEDDF] rounded-[40px] sm:ml-[45vw] "
+			className="flex flex-col justify-center items-center  z-10 w-10/12 sm:w-fit lg:w-[40vw]  h-fit sm:h-[80vh] lg:h-fit py-3 sm:py-7 px-1 md:px-2  mx-2  mb-3 lg:mb-10 lg:mr-10 bg-[#EDEDEDDF] rounded-[40px] sm:ml-[45vw]"
 		>
 			<div className="mb-1  lg:mb-8 2xl:my-10">
 				<h3 className="font-sans text-center text-xl sm:text-xl lg:text-2xl 2xl:text-6xl font-bold text-[#96090C]">
-					Contrata fácil y rápido
+					{data.title.textT}
 				</h3>
 			</div>
 
@@ -248,10 +248,10 @@ const FormLanding = (props) => {
 					type="submit"
 					className="font-sans text-white bg-[#E66400] hover:bg-[#FF6400] focus:ring-4 focus:outline-none focus:ring-[#B66400] font-normal	  text-sm 2xl:text-2xl w-full sm:w-auto px-5 py-3 my-3 sm:py-1.5 2xl:py-5 sm:my-3 2xl:my-10 text-center rounded-full"
 				>
-					Disponibilidad
+					{data.button.textB}
 				</button>
 				<p className="font-sans text-center text-[11px] 2xl:text-base m-0 py-0 px-8 sm:px-5">
-					Cobertura en la ciudad de Santiago de Queretaro
+					{data.cover}
 				</p>
 			</div>
 		</form>

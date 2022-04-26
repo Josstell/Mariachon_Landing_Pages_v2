@@ -1,43 +1,58 @@
 import Image from "next/image"
 import React from "react"
 
-const FooterLanding = () => {
+const FooterLanding = ({ data, icons }) => {
+	console.log("footer: ", data)
 	return (
 		<div className="w-full h-[50vh] bg-white flex flex-col justify-end	">
 			<div className=" flex justify-center xl:justify-start xl:ml-20 xl:mb-20 items-center mb-8">
-				<div className="px-1">
+				<a
+					href={icons.facebook.metadata.page}
+					className="px-1 cursor-pointer"
+					target="_blank"
+					rel="noreferrer"
+				>
 					<Image
-						src="/icons/facebook.svg"
-						alt=""
+						src={icons.facebook.url}
+						alt={icons.facebook.metadata.description}
 						layout="fixed"
 						width="50"
 						height="50"
 					/>
-				</div>
-				<div className="px-1">
+				</a>
+				<a
+					href={icons.instagram.metadata.page}
+					className="px-1 cursor-pointer"
+					target="_blank"
+					rel="noreferrer"
+				>
 					<Image
-						src="/icons/instagram.svg"
-						alt=""
+						src={icons.instagram.url}
+						alt={icons.instagram.metadata.description}
 						layout="fixed"
 						width="50"
 						height="50"
 					/>{" "}
-				</div>
+				</a>
 
-				<div className="px-1">
+				<a
+					href={icons.whatsapp.metadata.page}
+					className="px-1 cursor-pointer"
+					target="_blank"
+					rel="noreferrer"
+				>
 					<Image
-						src="/icons/whatsapp.svg"
-						alt=""
+						src={icons.whatsapp.url}
+						alt={icons.whatsapp.metadata.description}
 						layout="fixed"
 						width="50"
 						height="50"
 					/>
-				</div>
+				</a>
 			</div>
 			<div>
 				<p className="font-serif text-center font-light	 xl:text-right  mb-4 xl:mr-20	text-[11px]	2xl:text-base">
-					Todos los derechos reservados © 2022 Mariachon. Política de
-					Privacidad.
+					{data.copyright.textC}
 				</p>
 			</div>
 		</div>

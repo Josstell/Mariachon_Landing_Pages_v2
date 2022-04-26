@@ -1,68 +1,50 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useRef } from "react"
 import { useRouter } from "next/router"
 import Dispo from "../../components/LandingPages/Dispo"
 import FooterLanding from "../../components/LandingPages/Footer"
 import Header from "../../components/LandingPages/Header"
 import Section01 from "../../components/LandingPages/Section01"
 import Section02 from "../../components/LandingPages/Section02"
-import Navbar from "../../components/Navbar"
 
-const estado = {
-	id: 0,
-	region: "Queretaro",
-	city: "Cobertura ciudad de Santiago de Queretaro",
+import { database } from "../../helpers/database"
 
-	header: {
-		img: "/images/queretaro/mariachisenqueretaro.jpg",
-		form: {
-			text: "Contrata Fácil y rápido",
-			button: "Disponibilidad",
-			cover: "Cobertura ciudad de Santiago de Queretaro",
-		},
-	},
-	section_01: {
-		title: "Mariachis en Queretaro",
-		paragraph:
-			"Mariachon plataforma líder para la contratación de mariachis en tu ciudad.",
-	},
-	section_02: {
-		title: {
-			a: "Mariachis",
-			b: "responsables y de confianza",
-		},
-		paragraph:
-			"Encuentra precios y variedad de grupos según la calidad, performance e imagen.",
-	},
-	pre_footer: {
-		image: "/images/queretaro/preciosmariachisenqueretaro.jpg",
-		button: {
-			text: "Disponibilidad",
-		},
-	},
-	copyright:
-		"Todos los derechos reservados © 2022 Mariachon. Política de Privacidad",
-}
-
-const region = () => {
+const region = ({ data }) => {
 	const router = useRouter()
 	//const recaptchaRef = useRef(null)
 
-	const { region } = router.query
-
-	console.log(region)
+	if (router.isFallback) {
+		return <div>CARGANDO... </div>
+	}
+	console.log("sloosj", data)
 
 	return (
-		<div>
-			<Header data={estado.header} />
+		<>
+			<Header data={data.header} icons={data.icons} />
 
-			<Section01 />
-			<Section02 />
+			<Section01 data={data.section_01} />
+			<Section02 data={data.section_02} />
 
-			<Dispo />
-			<FooterLanding />
-		</div>
+			<Dispo data={data.pre_footer} />
+			<FooterLanding data={data.footer} icons={data.icons} />
+		</>
 	)
+}
+
+export async function getStaticPaths() {
+	const paths = await database.map((path) => ({
+		params: { estado: path.region.toString() },
+	}))
+
+	return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+	const data = await database.filter(
+		(est) => est.region.toString() === params.estado
+	)
+	return {
+		props: { data: data[0] }, // will be passed to the page component as props
+	}
 }
 
 export default region
