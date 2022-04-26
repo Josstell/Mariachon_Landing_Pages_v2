@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useRouter } from "next/router"
+import Head from "next/head"
+
 import Dispo from "../../components/LandingPages/Dispo"
 import FooterLanding from "../../components/LandingPages/Footer"
 import Header from "../../components/LandingPages/Header"
@@ -15,10 +17,14 @@ const region = ({ data }) => {
 	if (router.isFallback) {
 		return <div>CARGANDO... </div>
 	}
-	console.log("sloosj", data)
 
 	return (
 		<>
+			<Head>
+				<title>Mariachis en {data.region}</title>
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+				<link rel="icon" href="/icons/logomariachon.png" />
+			</Head>
 			<Header data={data.header} icons={data.icons} />
 
 			<Section01 data={data.section_01} />

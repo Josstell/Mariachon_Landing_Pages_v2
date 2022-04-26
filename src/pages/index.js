@@ -18,8 +18,8 @@ export default function Home({ data }) {
 	return (
 		<>
 			<Head>
-				<title>hCaptcha with Next</title>
-				<link rel="icon" href="/favicon.ico" />
+				<title>Mariachon</title>
+				<link rel="icon" href="/icons/logomariachon.png" />
 			</Head>
 			<Link
 				className="text-3xl font-bold underline"
