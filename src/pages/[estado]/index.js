@@ -25,7 +25,7 @@ const region = ({ data }) => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				<link rel="icon" href="/icons/logomariachon.png" />
 			</Head>
-			<Header data={data.header} icons={data.icons} />
+			<Header data={data.header} icons={data.icons} region={data.region} />
 
 			<Section01 data={data.section_01} />
 			<Section02 data={data.section_02} />

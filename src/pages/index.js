@@ -12,9 +12,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ data }) {
-	console.log("datos: ", data)
-	console.log(data[0].region)
-
 	return (
 		<>
 			<Head>

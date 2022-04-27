@@ -10,7 +10,7 @@ const newLead = (req, res) => {
 	/// .toLocaleString('mx')
 
 	const dataSend = req.body
-	const templateEmail = "d-126adc937d96459eaa1b79a87fc29a82"
+	const templateEmail = process.env.TEMPLETE_ID_EMAIL
 
 	let emailToSend =
 		req.body.email === ""

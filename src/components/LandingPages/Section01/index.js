@@ -1,8 +1,6 @@
 import React from "react"
 
 const Section01 = ({ data }) => {
-	console.log("sect 01", data)
-
 	return (
 		<div className="w-full h-[100vh] flex flex-col justify-center items-center bg-[#05117F]">
 			<div className="flex flex-col lg:flex-row">

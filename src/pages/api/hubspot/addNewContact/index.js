@@ -7,13 +7,13 @@ const addNewContact = (req, res) => {
 
 	const dataSend = req.body
 
-	console.log("hubSpot", dataSend)
+	console.log("hubSpot data:", dataSend)
 
 	const bodyHub = {
 		properties: [
 			{
 				property: "email",
-				value: dataSend.email,
+				value: dataSend.email !== "" ? dataSend.email : "sin_correo@gmail.com",
 			},
 			{
 				property: "firstname",
@@ -47,8 +47,6 @@ const addNewContact = (req, res) => {
 		],
 	}
 
-	console.log("hubSpot", bodyHub)
-
 	if (req.method === "POST") {
 		fetch(
 			`https://api.hubapi.com/contacts/v1/contact/?hapikey=${process.env.API_KEY_HUBSPOT}`,
@@ -60,8 +58,12 @@ const addNewContact = (req, res) => {
 				body: JSON.stringify(bodyHub),
 			}
 		)
-			.then((response) => response.json())
-			.then((data) => res.status(200).json(data))
+			.then((response) =>
+				res.status(200).json({
+					message: `La información ha sido agregada a hubSpot...`,
+					response,
+				})
+			)
 			.catch((error) => res.status(400).json(error))
 	}
 }

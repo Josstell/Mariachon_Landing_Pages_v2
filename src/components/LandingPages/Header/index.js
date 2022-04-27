@@ -3,8 +3,7 @@ import React from "react"
 import FormLanding from "../../Forms/FormLanding"
 import Navbar from "../../Navbar"
 //width={1920} height={1080}
-const Header = ({ data, icons }) => {
-	console.log("headersdvwsdv", icons.logo, data)
+const Header = ({ data, icons, region }) => {
 	return (
 		<div
 			id="formulario"
@@ -20,7 +19,7 @@ const Header = ({ data, icons }) => {
 				objectFit="cover"
 			/>
 			<Navbar data={icons.logo} />
-			<FormLanding data={data.form} />
+			<FormLanding data={data.form} region={region} />
 		</div>
 	)
 }

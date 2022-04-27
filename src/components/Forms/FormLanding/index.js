@@ -12,7 +12,7 @@ import { CalendarIcon, ClockIcon } from "@heroicons/react/outline"
 
 import ReCAPTCHA from "react-google-recaptcha"
 
-const FormLanding = ({ data }) => {
+const FormLanding = ({ data, region }) => {
 	let [isOpen, setIsOpen] = useState(false)
 
 	function closeModal() {
@@ -36,14 +36,14 @@ const FormLanding = ({ data }) => {
 	} = useForm()
 	//	const onSubmit = (data) => data
 
-	const onSubmit = (data, e) => {
+	const onSubmit = (dataForm, e) => {
 		e.preventDefault()
 
 		setDataClient({
-			...data,
+			...dataForm,
 			id: nanoid(),
-			region: "Queretaro",
-			city: "Cobertura ciudad de Santiago de Queretaro",
+			region,
+			city: data.cover,
 		})
 		setLoading(true)
 
@@ -70,10 +70,11 @@ const FormLanding = ({ data }) => {
 				addLeadToGoogleSheet(dataClient)
 				sendEmailToAdminAndClient(dataClient)
 				addLeadToHubSpot(dataClient)
-				resetForm()
 
 				setLoading(false)
 				openModal()
+				resetForm()
+
 				// alert("Sus datos fueron bien registrados")
 			} else {
 				// Else throw an error with the message returned
@@ -145,11 +146,9 @@ const FormLanding = ({ data }) => {
 
 			const validation = await response.json()
 
-			console.log(validation.message)
+			console.log(validation.message, validation.response)
 		} catch (error) {}
 	}
-
-	console.log("Mobilewef", isMobile)
 
 	return (
 		<>

@@ -35,6 +35,8 @@ const handlerGoogle = async (req, res) => {
 				email: req.body.email || "",
 				fecha: dateOfEvent.toLocaleDateString("es-MX", options),
 				hora: req.body.timeOfEvent,
+				estado: req.body.region || "",
+				ciudad: req.body.city,
 			}
 
 			await sheet.addRow(clientDetails)

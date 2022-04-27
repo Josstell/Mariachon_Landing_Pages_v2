@@ -1,7 +1,6 @@
 import React from "react"
 
 const Section02 = ({ data }) => {
-	console.log("sect 02", data)
 	return (
 		<div className=" flex flex-col h-[100vh] justify-center items-end lg:items-start">
 			<h2 className="text-5xl lg:text-6xl 2xl:text-9xl lg:w-[50vw] text-right pr-12 pl-16	">
