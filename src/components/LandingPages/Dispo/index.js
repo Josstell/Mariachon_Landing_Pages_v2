@@ -3,7 +3,6 @@ import Link from "next/link"
 import React from "react"
 
 const Dispo = ({ data }) => {
-	console.log("dispo: ", data)
 	return (
 		<div className=" w-full h-[60vh] relative  flex flex-col justify-center items-end	">
 			<Image

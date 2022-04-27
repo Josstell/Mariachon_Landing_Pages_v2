@@ -113,8 +113,6 @@ const FormLanding = ({ data, region }) => {
 			})
 
 			const validation = await response.json()
-
-			console.log(validation.message)
 		} catch (error) {}
 	}
 
