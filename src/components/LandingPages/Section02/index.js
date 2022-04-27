@@ -6,7 +6,7 @@ const Section02 = ({ data }) => {
 		<div className=" flex flex-col h-[100vh] justify-center items-end lg:items-start">
 			<h2 className="text-5xl lg:text-6xl 2xl:text-9xl lg:w-[50vw] text-right pr-12 pl-16	">
 				<span className="font-sans font-bold text-[#960909]">
-					{data.title.a.textT}
+					{data.title.a.textT}{" "}
 				</span>
 				{data.title.b.textT}
 			</h2>
