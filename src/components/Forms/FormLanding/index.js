@@ -68,12 +68,6 @@ const FormLanding = ({ data, region }) => {
 			if (response.ok) {
 				// If the response is ok than show the success alert
 				addLeadToGoogleSheet(dataClient)
-				sendEmailToAdminAndClient(dataClient)
-				addLeadToHubSpot(dataClient)
-
-				setLoading(false)
-				openModal()
-				resetForm()
 
 				// alert("Sus datos fueron bien registrados")
 			} else {
@@ -113,6 +107,7 @@ const FormLanding = ({ data, region }) => {
 			})
 
 			const validation = await response.json()
+			sendEmailToAdminAndClient(Client)
 		} catch (error) {}
 	}
 
@@ -127,6 +122,7 @@ const FormLanding = ({ data, region }) => {
 			})
 
 			const validation = await response.json()
+			addLeadToHubSpot(dataClient)
 
 			console.log(validation.message)
 		} catch (error) {}
@@ -143,7 +139,9 @@ const FormLanding = ({ data, region }) => {
 			})
 
 			const validation = await response.json()
-
+			openModal()
+			resetForm()
+			setLoading(false)
 			console.log(validation.message, validation.response)
 		} catch (error) {}
 	}
