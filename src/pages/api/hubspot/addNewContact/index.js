@@ -13,7 +13,10 @@ const addNewContact = (req, res) => {
 		properties: [
 			{
 				property: "email",
-				value: dataSend.email !== "" ? dataSend.email : "sin_correo@gmail.com",
+				value:
+					dataSend.email !== ""
+						? dataSend.email
+						: `sin_correo${dataSend.id}@gmail.com`,
 			},
 			{
 				property: "firstname",
