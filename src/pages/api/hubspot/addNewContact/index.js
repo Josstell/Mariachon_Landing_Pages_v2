@@ -1,11 +1,27 @@
 const addNewContact = (req, res) => {
+	function handleErrors(response) {
+		if (!response.ok) {
+			throw Error({ status: response.status, response })
+		}
+		return response
+	}
+
 	if (req.method !== "POST") {
 		return res.status(400).json({ error: "Method not allowed" })
 	}
 
 	/// .toLocaleString('mx')
 
+	const options = {
+		weekday: "long",
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	}
+
 	const dataSend = req.body
+
+	const dateOfEvent = new Date(req.body.dateOfEvent)
 
 	console.log("hubSpot data:", dataSend)
 
@@ -47,6 +63,14 @@ const addNewContact = (req, res) => {
 				property: "state",
 				value: dataSend.region,
 			},
+			{
+				property: "event_date",
+				value: dateOfEvent.toLocaleDateString("es-MX", options),
+			},
+			{
+				property: "event_time",
+				value: dataSend.timeOfEvent,
+			},
 		],
 	}
 
@@ -61,13 +85,17 @@ const addNewContact = (req, res) => {
 				body: JSON.stringify(bodyHub),
 			}
 		)
-			.then((response) =>
+			.then(handleErrors)
+			.then((response) => {
 				res.status(200).json({
-					message: `La información ha sido agregada a hubSpot...`,
+					message_from_us: `La información ha sido agregada a hubSpot...`,
 					response,
 				})
-			)
-			.catch((error) => res.status(400).json(error))
+			})
+			.catch((error) => {
+				console.log(error)
+				res.status(error.status).json(error)
+			})
 	}
 }
 

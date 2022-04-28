@@ -67,7 +67,21 @@ const FormLanding = ({ data, region }) => {
 			})
 			if (response.ok) {
 				// If the response is ok than show the success alert
-				addLeadToGoogleSheet(dataClient)
+
+				Promise.all([
+					addLeadToGoogleSheet(dataClient),
+					sendEmailToAdminAndClient(dataClient),
+					addLeadToHubSpot(dataClient),
+				])
+					.then((responses) => {
+						console.log("respuestas:  ", responses)
+						openModal()
+						resetForm()
+						setLoading(false)
+					})
+					.catch((err) => {
+						console.log(err)
+					})
 
 				// alert("Sus datos fueron bien registrados")
 			} else {
@@ -106,9 +120,10 @@ const FormLanding = ({ data, region }) => {
 				},
 			})
 
-			const validation = await response.json()
-			sendEmailToAdminAndClient(Client)
-		} catch (error) {}
+			return await response.json()
+		} catch (error) {
+			return error
+		}
 	}
 
 	const sendEmailToAdminAndClient = async (client) => {
@@ -121,11 +136,10 @@ const FormLanding = ({ data, region }) => {
 				},
 			})
 
-			const validation = await response.json()
-			addLeadToHubSpot(dataClient)
-
-			console.log(validation.message)
-		} catch (error) {}
+			return await response.json()
+		} catch (error) {
+			return error
+		}
 	}
 
 	const addLeadToHubSpot = async (client) => {
@@ -138,12 +152,10 @@ const FormLanding = ({ data, region }) => {
 				},
 			})
 
-			const validation = await response.json()
-			openModal()
-			resetForm()
-			setLoading(false)
-			console.log(validation.message, validation.response)
-		} catch (error) {}
+			return await response.json()
+		} catch (error) {
+			return error
+		}
 	}
 
 	return (
