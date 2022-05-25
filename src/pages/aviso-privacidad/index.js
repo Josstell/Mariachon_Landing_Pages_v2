@@ -16,10 +16,10 @@ const aviso_privacidad = ({ data }) => {
         region={data[0].region}
       />
       <div className="p-4 container flex flex-col justify-center  bg-slate-50">
-        <h1 className="text-5xl my-5 text-center  font-bold">
+        <h1 className="text-xl md:text-5xl my-5 text-center  font-bold">
           Aviso de privacidad
         </h1>
-        <h4 className="text-xl  ">
+        <h4 className="text-lg  ">
           <span className="font-semibold">
             Identidad y domicilio del responsable.
           </span>
