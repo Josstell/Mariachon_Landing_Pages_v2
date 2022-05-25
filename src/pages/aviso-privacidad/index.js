@@ -115,8 +115,8 @@ const aviso_privacidad = ({ data }) => {
         <p className="text-justify py-2">
           Si usted no manifiesta su oposición para que sus datos personales sean
           transferidos o utilizados a los servicios del sitio
-          https://mariachiangelopolis.com/ se entenderá que ha otorgado su
-          consentimiento para ello.
+          https://mariachon.com/ se entenderá que ha otorgado su consentimiento
+          para ello.
         </p>
         <p className="text-justify py-2">
           Finalmente nos reservamos el derecho bajo su exclusiva discreción de
