@@ -16,12 +16,9 @@ export default function Home({ data }) {
     <>
       <Head>
         <title>Mariachon</title>
-        <link rel="icon" href="/icons/logomariachon.png" />
+        <link rel="icon" href="/icons/mariachonapp.png" />
       </Head>
-      <Link
-        className="text-3xl font-bold underline"
-        href={`/${data[0].region}`}
-      >
+      <Link className="text-3xl font-bold underline" href={data[0].slug}>
         queretaro
       </Link>
     </>

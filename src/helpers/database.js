@@ -2,6 +2,16 @@ export const database = [
   {
     id: 0,
     region: 'Queretaro',
+    slug: 'mariachisenqueretaro',
+    SEO: {
+      name: 'Precios de mariachis en puebla',
+      description:
+        'Mariachis en Queretaro. Mariachon plataforma líder para la contratación de mariachis en tu ciudad. Compruébelo por usted mismo!!',
+      og_description:
+        'Mariachis en Queretaro. Responsables y de confianza.Encuentra precios y variedad de grupos según la calidad, performance e imagen.',
+      keywords: 'mariachis, mariachi, Queretaro, Santiago',
+    },
+
     header: {
       img: {
         url: '/images/queretaro/mariachisenqueretaro.jpg',
