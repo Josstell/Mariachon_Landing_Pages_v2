@@ -7,8 +7,8 @@ const Header = ({ data, children, isHome }) => {
     <div
       id="formulario"
       className={` ${
-        !isHome ? 'move-image lg:items-end ' : 'move-image-home'
-      } relative sm:no-move-image flex flex-col justify-between items-center	h-[100vh] bg-slate-900/5`}
+        !isHome ? 'move-image  lg:items-end ' : 'move-image-home'
+      } relative sm:no-move-image flex flex-col justify-between items-center	h-[100vh] bg-slate-900/40`}
     >
       <Image
         className="-z-30"

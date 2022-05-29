@@ -1,27 +1,35 @@
-import Link from 'next/link'
 import Head from 'next/head'
 
 import { database, databaseHome } from '../helpers/database'
 import Header from 'src/components/LandingPages/Header'
 import Navbar from 'src/components/Navbar'
-import FormLanding from 'src/components/Forms/FormLanding'
 import SearchGral from 'src/components/Search'
 import Section01 from 'src/components/Home/Secction01'
 import Section02 from 'src/components/Home/Section02'
 import Dispo from 'src/components/Home/Dispo'
 import FooterLanding from 'src/components/LandingPages/Footer'
+import client from '@lib/sanity'
+
+const query = `*[_type == "regions"]{
+  region,
+  slug
+}`
 
 export async function getStaticProps() {
+  const regions = await client.fetch(query)
+
+  console.log('REgiones: ', regions)
+
   return {
     props: {
       data: database,
       home: databaseHome,
+      regions: regions,
     },
   }
 }
 
-export default function Home({ data, home }) {
-  console.log(home)
+export default function Home({ home, regions }) {
   return (
     <>
       <Head>
@@ -38,7 +46,7 @@ export default function Home({ data, home }) {
           <h3 className=" text-2xl font-[inter] text-center text-slate-300 mb-2">
             {home.header.slogan}
           </h3>
-          <SearchGral />
+          <SearchGral regions={regions} />
         </div>
         <div></div>
       </Header>
