@@ -1,13 +1,28 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        font-family:  'Inter',sans-serif,'Comfortaa', cursive;
+    }
+}
 
 
 
 .move-image> span> img {
         object-position: 27%;
     }
+
+.move-image-home>span>img {
+    object-position: 72%;
+}
+
+.move-image-home-dispo>span>img {
+    object-position: 47%;
+}
 
 .no-move-image>span>img {
         object-position: 50% 50%;

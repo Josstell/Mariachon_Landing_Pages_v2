@@ -9,6 +9,8 @@ import Section01 from '../../components/LandingPages/Section01'
 import Section02 from '../../components/LandingPages/Section02'
 
 import { database } from '../../helpers/database'
+import Navbar from 'src/components/Navbar'
+import FormLanding from 'src/components/Forms/FormLanding'
 
 const region = ({ data }) => {
   const router = useRouter()
@@ -17,6 +19,8 @@ const region = ({ data }) => {
   if (router.isFallback) {
     return <div>CARGANDO... </div>
   }
+
+  console.log('Datos: ', data)
 
   return (
     <>
@@ -41,7 +45,10 @@ const region = ({ data }) => {
         <meta property="og:description" content={data.SEO.og_description} />
         <meta name="keywords" content={data.SEO.keywords} />
       </Head>
-      <Header data={data.header} icons={data.icons} region={data.region} />
+      <Header data={data.header} icons={data.icons} region={data.region}>
+        <Navbar data={data.icons.logo} />
+        <FormLanding data={data.header.form} region={data.region} />
+      </Header>
 
       <Section01 data={data.section_01} />
       <Section02 data={data.section_02} />
