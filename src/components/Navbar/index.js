@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { isMobile } from 'react-device-detect'
 
 const Navbar = ({ data, isHome }) => {
   return (
