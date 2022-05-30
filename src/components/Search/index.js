@@ -16,11 +16,11 @@ const SearchGral = ({ regions }) => {
       >
         <input
           type="datetime-local"
-          className={` outline-none	border-0	 ml-4 px-1 md:px-4 text-slate-900 	 py-4 w-60 md:w-80 bg-white/90`}
+          className={` outline-none	border-0	 ml-4 px-1 md:px-4 text-slate-900 py-4 w-40 md:w-80 bg-white/90`}
         />
-        <div className="border-l-4 border-slate-900 " />
+        <div className="border-l-2 border-slate-900 " />
 
-        <select className="block appearance-none w-40  text-slate-900 outline-none	border-0  bg-white/90   hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+        <select className="block appearance-none w-20 md:40  text-slate-900 outline-none	border-0  bg-white/90   hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
           <option>Estado</option>
           {regions
             ? regions.map((reg) => {
@@ -48,7 +48,7 @@ const SearchGral = ({ regions }) => {
         </select> */}
 
         <button className="flex items-center justify-center px-1 md:px-2 border-0 md:border-l ">
-          <SearchIcon className="w-10 fill-slate-900" />
+          <SearchIcon className="w-7 md:w1-0 fill-slate-900" />
         </button>
       </div>
     </div>

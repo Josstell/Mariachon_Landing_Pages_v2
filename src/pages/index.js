@@ -39,11 +39,11 @@ export default function Home({ home, regions }) {
       <Header data={home.header} isHome>
         <Navbar data={home.icons.logo} isHome={true} />
 
-        <div className="z-30">
-          <h1 className="text-bold font-[Comfortaa] text-center text-5xl text-slate-300 mb-2">
+        <div className="z-30 my-5">
+          <h1 className="text-bold font-[Comfortaa] text-center text-5xl text-slate-50 mb-2">
             {home.header.title}
           </h1>
-          <h3 className=" text-2xl font-[inter] text-center text-slate-300 mb-2">
+          <h3 className=" text-2xl font-[inter] text-center text-slate-50 mb-2">
             {home.header.slogan}
           </h3>
           <SearchGral regions={regions} />
