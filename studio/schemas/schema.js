@@ -21,7 +21,7 @@ import section02Schema from './regions/seccion02/section02Schema'
 import dispoSchema from './regions/dispo/dispoSchema'
 import footerSchema from './regions/footer/footerSchema'
 import socialSchema from './components/social/socialSchema'
-import SEOSchema from './regions/SEO/SEOschema'
+import SEOSchema from './regions/SEO/SEOSchema'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
