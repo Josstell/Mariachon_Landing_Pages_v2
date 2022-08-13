@@ -52,10 +52,10 @@ const FooterLanding = ({ data, icons }) => {
       </div>
 
       <div>
-        <Link href="/aviso-privacidad" passHref>
-          <p className="font-serif text-center font-light	 xl:text-right  mb-4 xl:mr-20	text-[11px]	2xl:text-base cursor-pointer">
+        <Link href="/avisoprivacidad" passHref>
+          <a className="font-serif text-center font-light	 xl:text-right  mb-4 xl:mr-20	text-[11px]	2xl:text-base cursor-pointer">
             {data.copyright.textC}
-          </p>
+          </a>
         </Link>
       </div>
     </div>

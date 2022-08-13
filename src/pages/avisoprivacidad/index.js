@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Header from '../../components/LandingPages/Header'
 import { database } from '../../helpers/database'
 
-const aviso_privacidad = ({ data }) => {
+const avisoprivacidad = ({ data }) => {
   return (
     <>
       <Head>
@@ -11,9 +11,9 @@ const aviso_privacidad = ({ data }) => {
         <link rel="icon" href="/icons/logomariachon.png" />
       </Head>
       <Header
-        data={data[0].header}
-        icons={data[0].icons}
-        region={data[0].region}
+        data={data[0]?.header}
+        icons={data[0]?.icons}
+        region={data[0]?.region}
       />
       <div className="p-4 container flex flex-col justify-center  bg-slate-50">
         <h1 className="text-xl md:text-5xl my-5 text-center  font-bold">
@@ -137,9 +137,9 @@ const aviso_privacidad = ({ data }) => {
   )
 }
 
-export default aviso_privacidad
+export default avisoprivacidad
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   return {
     props: {
       data: database,

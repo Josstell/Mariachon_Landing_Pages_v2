@@ -13,7 +13,7 @@ const Header = ({ data, children, isHome }) => {
     >
       <Image
         className="-z-30"
-        src={isHome ? data.img.url : urlFor(data.img.image.asset).url()}
+        src={isHome ? data.img.url : urlFor(data?.img?.image?.asset).url()}
         alt={data.img.description}
         layout="fill"
         objectFit="cover"
