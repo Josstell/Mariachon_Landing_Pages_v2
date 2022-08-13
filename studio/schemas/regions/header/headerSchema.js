@@ -24,7 +24,7 @@ export default {
           type: 'string',
         },
         {
-          title: 'Covertura',
+          title: 'Cobertura',
           name: 'cover',
           type: 'string',
         },

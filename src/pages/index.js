@@ -11,6 +11,7 @@ import FooterLanding from 'src/components/LandingPages/Footer'
 import client from '@lib/sanity'
 
 const query = `*[_type == "regions"]{
+  _id,
   region,
   slug
 }`
@@ -18,7 +19,6 @@ const query = `*[_type == "regions"]{
 export async function getStaticProps() {
   const regions = await client.fetch(query)
 
-  console.log('REgiones: ', regions)
 
   return {
     props: {
@@ -30,6 +30,8 @@ export async function getStaticProps() {
 }
 
 export default function Home({ home, regions }) {
+    console.log('REgiones: ', regions)
+
   return (
     <>
       <Head>

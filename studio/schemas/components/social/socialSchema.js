@@ -3,16 +3,16 @@ export default {
   type: 'object',
   title: 'Image',
   fields: [
-    {
-      name: 'image',
-      title: 'Imagen',
-      type: 'image',
-    },
-    {
-      name: 'alt',
-      type: 'string',
-      title: 'Texto alternativo',
-    },
+    // {
+    //   name: 'image',
+    //   title: 'Imagen',
+    //   type: 'image',
+    // },
+    // {
+    //   name: 'alt',
+    //   type: 'string',
+    //   title: 'Texto alternativo',
+    // },
     {
       name: 'url',
       type: 'string',

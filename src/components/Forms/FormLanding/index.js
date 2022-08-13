@@ -166,7 +166,7 @@ const FormLanding = ({ data, region }) => {
       >
         <div className="mb-1  lg:mb-8 2xl:my-10">
           <h3 className="font-sans text-center text-xl sm:text-xl lg:text-2xl 2xl:text-6xl font-bold text-[#96090C]">
-            {data.title.textT}
+            {data.title}
           </h3>
         </div>
 
@@ -283,7 +283,7 @@ const FormLanding = ({ data, region }) => {
                 Enviando...
               </div>
             ) : (
-              data.button.textB
+              data.button
             )}
           </button>
           <p className="font-sans text-center text-[11px] 2xl:text-base m-0 py-0 px-8 sm:px-5">

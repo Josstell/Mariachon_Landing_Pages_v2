@@ -9,6 +9,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'seo',
+      title: 'SEO',
+      type: 'seoData',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'string',

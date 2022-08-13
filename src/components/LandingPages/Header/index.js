@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import { urlFor } from '@lib/sanity'
 
 //width={1920} height={1080}
 const Header = ({ data, children, isHome }) => {
@@ -12,8 +13,8 @@ const Header = ({ data, children, isHome }) => {
     >
       <Image
         className="-z-30"
-        src={data.img.url}
-        alt={data.img.metadata.description}
+        src={isHome ? data.img.url : urlFor(data.img.image.asset).url()}
+        alt={data.img.description}
         layout="fill"
         objectFit="cover"
       />
