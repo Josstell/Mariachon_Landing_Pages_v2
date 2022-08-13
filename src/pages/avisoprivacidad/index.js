@@ -3,18 +3,15 @@ import Head from 'next/head'
 import Header from '../../components/LandingPages/Header'
 import { database } from '../../helpers/database'
 
-const avisoprivacidad = ({ data }) => {
+const avisoprivacidad = () => {
+  const data = database[0]
   return (
     <>
       <Head>
         <title>Mariachon - Aviso privacidad</title>
         <link rel="icon" href="/icons/logomariachon.png" />
       </Head>
-      <Header
-        data={data[0]?.header}
-        icons={data[0]?.icons}
-        region={data[0]?.region}
-      />
+      <Header data={data?.header} icons={data?.icons} region={data?.region} />
       <div className="p-4 container flex flex-col justify-center  bg-slate-50">
         <h1 className="text-xl md:text-5xl my-5 text-center  font-bold">
           Aviso de privacidad
@@ -139,6 +136,7 @@ const avisoprivacidad = ({ data }) => {
 
 export default avisoprivacidad
 
+/*
 export async function getServerSideProps() {
   return {
     props: {
@@ -146,3 +144,4 @@ export async function getServerSideProps() {
     },
   }
 }
+*/
