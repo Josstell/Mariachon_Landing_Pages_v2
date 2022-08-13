@@ -53,9 +53,9 @@ const FooterLanding = ({ data, icons }) => {
 
       <div>
         <Link href="/avisoprivacidad" passHref>
-          <a className="font-serif text-center font-light	 xl:text-right  mb-4 xl:mr-20	text-[11px]	2xl:text-base cursor-pointer">
+          <p className="font-serif text-center font-light	 xl:text-right  mb-4 xl:mr-20	text-[11px]	2xl:text-base cursor-pointer">
             {data.copyright.textC}
-          </a>
+          </p>
         </Link>
       </div>
     </div>
