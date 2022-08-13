@@ -11,7 +11,12 @@ const avisoprivacidad = () => {
         <title>Mariachon - Aviso privacidad</title>
         <link rel="icon" href="/icons/logomariachon.png" />
       </Head>
-      <Header data={data?.header} icons={data?.icons} region={data?.region} />
+      <Header
+        data={data?.header}
+        icons={data?.icons}
+        region={data?.region}
+        isHome
+      />
       <div className="p-4 container flex flex-col justify-center  bg-slate-50">
         <h1 className="text-xl md:text-5xl my-5 text-center  font-bold">
           Aviso de privacidad
