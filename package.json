@@ -22,6 +22,7 @@
     "next": "12.1.5",
     "next-connect": "^1.0.0-next.1",
     "next-sanity": "^0.5.2",
+    "nextjs-cors": "^2.1.1",
     "node-fetch": "^3.2.3",
     "react": "18.0.0",
     "react-device-detect": "^2.2.2",
