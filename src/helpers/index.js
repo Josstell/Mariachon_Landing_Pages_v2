@@ -26,18 +26,18 @@ export const toBase64 = (str) =>
  * Google Sheet
  */
 
-const credsEnv = process.env.NEXT_PUBLIC_GOOGLE_SHEET
-const creds = JSON.parse(credsEnv)
-
-// const { SPREADSHEET_ID } = process.env
+//const { SPREADSHEET_ID } = process.env
 // const { SHEET_ID } = process.env
 
 export const callApiGoogleSheet = async (SPREADSHEET_ID, SHEET_ID) => {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID)
 
-  await doc.useServiceAccountAuth(creds)
+  await doc.useServiceAccountAuth({
+    client_email: process.env.NEXT_PUBLIC_GOOGLE_SHEET_EMAIL_ACCOUNT,
+    private_key: process.env.NEXT_PUBLIC_GOOGLE_SHEET_PRIVATE_KEY,
+  })
   await doc.loadInfo()
   const sheet = doc.sheetsById[SHEET_ID]
   const sheetGoogle = await sheet.getRows()
-  return { sheetGoogle, sheet }
+  return { sheet, sheetGoogle }
 }
