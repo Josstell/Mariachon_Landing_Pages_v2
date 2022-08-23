@@ -11,6 +11,8 @@ export default handlerCors().post(async (req, res) => {
 
   const date = new Date()
 
+  console.log(req)
+
   const mariachiDetails = {
     fecha_creacion: date.toLocaleDateString('es-MX', options),
     id: req.body?.id,
@@ -36,7 +38,9 @@ export default handlerCors().post(async (req, res) => {
   )
 
   const isDataAlreadySved = sheetGoogle.find((row) => row.id === req.body?.id)
-
+  res.status(200).json({
+    message: ` ${mariachiDetails.id} actualizado.`,
+  })
   if (isDataAlreadySved === undefined) {
     try {
       await sheet.addRow(mariachiDetails)
