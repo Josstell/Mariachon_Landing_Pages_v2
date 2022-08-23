@@ -28,6 +28,8 @@ export default handlerCors().post(async (req, res) => {
     contrato: req.body?.service?.contract || 'no disponible',
   }
 
+  console.log('Dato:', mariachiDetails)
+
   const { sheet, sheetGoogle } = await callApiGoogleSheet(
     process.env.SPREADSHEET_ID_MARIACHON_MARIACHIS,
     process.env.SHEET_ID_MARIACHIS
