@@ -38,9 +38,7 @@ export default handlerCors().post(async (req, res) => {
   )
 
   const isDataAlreadySved = sheetGoogle.find((row) => row.id === req.body?.id)
-  res.status(200).json({
-    message: ` ${mariachiDetails.id} actualizado.`,
-  })
+
   if (isDataAlreadySved === undefined) {
     try {
       await sheet.addRow(mariachiDetails)
@@ -60,12 +58,13 @@ export default handlerCors().post(async (req, res) => {
         (marKey) => (sheetGoogle[rowData][marKey] = mariachiDetails[marKey])
       )
       await sheetGoogle[rowData].save() // save changes
-      res.status(200).json({
+
+      return res.status(200).json({
         message: ` ${mariachiDetails.id} actualizado.`,
       })
-    } catch (err) {
+    } catch (error) {
       return res.status(400).json({
-        error: err.message,
+        error: error.message,
       })
     }
   }
