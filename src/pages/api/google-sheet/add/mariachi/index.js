@@ -30,12 +30,11 @@ export default handlerCors().post(async (req, res) => {
     contrato: req.body?.service?.contract || 'no disponible',
   }
 
-  const { sheet, sheetGoogle } = await callApiGoogleSheet(
+  const { sheet } = await callApiGoogleSheet(
     SPREADSHEET_ID_MARIACHON_MARIACHIS,
     SHEET_ID_MARIACHIS
   )
 
-  console.log(JSON.parse(sheetGoogle))
   await sheet.addRow(mariachiDetails)
   //const isDataAlreadySved = sheetGoogle.find((row) => row.id === req.body?.id)
 
