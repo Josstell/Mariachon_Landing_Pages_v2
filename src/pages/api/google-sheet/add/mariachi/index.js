@@ -1,7 +1,7 @@
-import { callApiGoogleSheet } from 'src/helpers'
 import handlerCors from 'src/helpers/api/allowCors'
 
-const { SPREADSHEET_ID_MARIACHON_MARIACHIS, SHEET_ID_MARIACHIS } = process.env
+// import { callApiGoogleSheet } from 'src/helpers'
+// const { SPREADSHEET_ID_MARIACHON_MARIACHIS, SHEET_ID_MARIACHIS } = process.env
 
 export default handlerCors().post(async (req, res) => {
   const options = {
@@ -30,17 +30,15 @@ export default handlerCors().post(async (req, res) => {
     contrato: req.body?.service?.contract || 'no disponible',
   }
 
-  const { sheet } = await callApiGoogleSheet(
-    SPREADSHEET_ID_MARIACHON_MARIACHIS,
-    SHEET_ID_MARIACHIS
-  )
+  // const { sheet } = await callApiGoogleSheet(
+  //   SPREADSHEET_ID_MARIACHON_MARIACHIS,
+  //   SHEET_ID_MARIACHIS
+  // )
 
-  await sheet.addRow(mariachiDetails)
+  // await sheet.addRow(mariachiDetails)
   //const isDataAlreadySved = sheetGoogle.find((row) => row.id === req.body?.id)
 
-  return res.status(200).json({
-    message: ` ${mariachiDetails.id},  actualizado.`,
-  })
+  return res.status(200).json(mariachiDetails)
 
   // if (isDataAlreadySved === undefined) {
   //   try {
