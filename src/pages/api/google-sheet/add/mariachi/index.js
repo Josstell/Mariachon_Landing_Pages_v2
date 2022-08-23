@@ -1,4 +1,4 @@
-import { callApiGoogleSheet } from 'src/helpers'
+//import { callApiGoogleSheet } from 'src/helpers'
 import handlerCors from 'src/helpers/api/allowCors'
 
 export default handlerCors().post(async (req, res) => {
