@@ -28,15 +28,15 @@ export default handlerCors().post(async (req, res) => {
     contrato: req.body?.service?.contract || 'no disponible',
   }
 
-  const { sheet, sheetGoogle } = await callApiGoogleSheet(
-    process.env.SPREADSHEET_ID_MARIACHON_MARIACHIS,
-    process.env.SHEET_ID_MARIACHIS
-  )
+  // const { sheet, sheetGoogle } = await callApiGoogleSheet(
+  //   process.env.SPREADSHEET_ID_MARIACHON_MARIACHIS,
+  //   process.env.SHEET_ID_MARIACHIS
+  // )
 
-  const isDataAlreadySved = sheetGoogle.find((row) => row.id === req.body?.id)
+  // const isDataAlreadySved = sheetGoogle.find((row) => row.id === req.body?.id)
 
   return res.status(200).json({
-    message: ` ${mariachiDetails.id}, ${isDataAlreadySved} actualizado.`,
+    message: ` ${mariachiDetails.id},  actualizado.`,
   })
 
   // if (isDataAlreadySved === undefined) {
