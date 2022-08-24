@@ -22,15 +22,15 @@ export default handlerCors().post(async (req, res) => {
     estado: req.body?.region || '',
     tel: req.body?.tel || '',
     description: req.body?.description || '',
-    coordinador: req.body?.coordinator?.name || '',
-    elementos: req.body?.members || 0,
-    categoria: req.body?.categorySet || '',
-    serenata: req.body?.service?.serenata || 'no disponible',
-    hora: req.body?.service?.hora || 'no disponible',
-    contrato: req.body?.service?.contracto || 'no disponible',
-    creado: req.body?.createdBy || 'no disponible',
-    modificado: req.body?.modifiedBy || 'no disponible',
+    coordinador: req.body.coordinator || '',
+    elementos: parseInt(req.body.members) || 0,
+    categoria: [req.body.category_mariachi] || '',
+    serenata: req.body?.serenata * 1 || 'no disponible',
+    hora: req.body?.hora * 1 || 'no disponible',
+    contrato: req.body?.contracto * 1 || 'no disponible',
   }
+
+  console.log(mariachiDetails)
 
   const { sheet, sheetGoogle } = await callApiGoogleSheet(
     SPREADSHEET_ID_MARIACHON_MARIACHIS,
