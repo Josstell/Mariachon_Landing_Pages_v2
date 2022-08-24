@@ -15,7 +15,7 @@ export default handlerCors().post(async (req, res) => {
 
   const mariachiDetails = {
     fecha_creacion: date.toLocaleDateString('es-MX', options),
-    id: req.body?.id,
+    id: req.body?._id,
     nombre: req.body?.name || '',
     ciudad: req.body?.city || '',
     cp: req.body?.cp || '',
@@ -27,7 +27,9 @@ export default handlerCors().post(async (req, res) => {
     categoria: req.body?.categorySet || '',
     serenata: req.body?.service?.serenata || 'no disponible',
     hora: req.body?.service?.hora || 'no disponible',
-    contrato: req.body?.service?.contract || 'no disponible',
+    contrato: req.body?.service?.contracto || 'no disponible',
+    creado: req.body?.createdBy || 'no disponible',
+    modificado: req.body?.modifiedBy || 'no disponible',
   }
 
   const { sheet, sheetGoogle } = await callApiGoogleSheet(
