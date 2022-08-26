@@ -45,7 +45,7 @@ export default handlerCors().post(async (req, res) => {
     try {
       await sheet.addRow(mariachiDetails)
       return res.status(200).json({
-        message: ` ${mariachiDetails._id} agregada correntamente en google sheet`,
+        message: ` ${mariachiDetails.id} agregada correntamente en google sheet`,
       })
     } catch (err) {
       return res.status(400).json({
@@ -62,7 +62,7 @@ export default handlerCors().post(async (req, res) => {
       await sheetGoogle[rowData].save() // save changes
 
       return res.status(200).json({
-        message: ` ${mariachiDetails._id} actualizado.`,
+        message: ` ${mariachiDetails.id} actualizado.`,
       })
     } catch (error) {
       return res.status(400).json({
