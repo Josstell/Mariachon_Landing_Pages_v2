@@ -37,7 +37,9 @@ export default handlerCors().post(async (req, res) => {
     SHEET_ID_MARIACHIS
   )
 
-  const isDataAlreadySved = sheetGoogle.find((row) => row.id === req.body?.id)
+  const isDataAlreadySved = sheetGoogle.find(
+    (row) => row.id === mariachiDetails.id
+  )
 
   //return res.status(200).json(mariachiDetails)
 
