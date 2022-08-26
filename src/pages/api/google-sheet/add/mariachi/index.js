@@ -24,7 +24,7 @@ export default handlerCors().post(async (req, res) => {
     description: req.body?.description || '',
     coordinador: req.body?.coordinator || '',
     elementos: parseInt(req.body?.members) || 0,
-    categoria: req.body?.category_mariachi || '',
+    categoria: req.body?.categorySet[0] || '',
     serenata: req.body?.serenata * 1 || 'no disponible',
     hora: req.body?.hora * 1 || 'no disponible',
     contrato: req.body?.contracto * 1 || 'no disponible',
