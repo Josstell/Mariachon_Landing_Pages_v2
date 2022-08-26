@@ -62,7 +62,7 @@ export default handlerCors().post(async (req, res) => {
       await sheetGoogle[rowData].save() // save changes
 
       return res.status(200).json({
-        message: ` ${mariachiDetails.id} actualizado.`,
+        message: ` ${mariachiDetails._id} actualizado.`,
       })
     } catch (error) {
       return res.status(400).json({
