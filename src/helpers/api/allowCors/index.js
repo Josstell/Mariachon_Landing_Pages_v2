@@ -1,25 +1,41 @@
-import nc from 'next-connect'
+import nextConnect from 'next-connect'
+import cors from 'cors'
 
-import NextCors from 'nextjs-cors'
+import { verify } from 'jsonwebtoken'
 
-export default function handlerCors() {
-  return nc({
-    onError(error, req, res) {
-      res
-        .status(501)
-        .json({ error: `Sorry something Happened! ${error.message}` })
-    },
-    onNoMatch(req, res) {
-      res.status(405).json({ error: `Method ${req.method} Not Allowed` })
-    },
-  }).use(async (req, res, next) => {
-    await NextCors(req, res, {
-      // Options
-      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-      origin: ['*', 'http://localhost:300', 'https://mariachon.com'],
-      optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-    })
-
-    next()
+export default nextConnect({
+  onError(error, req, res) {
+    res
+      .status(501)
+      .json({ error: `Sorry something happened! ${error.message}` })
+  },
+  onNoMatch(req, res) {
+    res.status(405).json({ error: `Method ${req.method} not allowed` })
+  },
+})
+  .use(cors())
+  .options('/*', (_, res) => {
+    res.sendStatus(200)
   })
-}
+  .use((req, res, next) => {
+    req.userId = 'guest'
+    req.userName = 'guest'
+    const { authorization } = req.headers
+
+    if (!authorization) {
+      next()
+      console.log('no')
+    } else {
+      verify(
+        authorization,
+        process.env.NEXT_PUBLIC_SECRET_KEY,
+        (error, decoded) => {
+          if (!error && decoded) {
+            req.userId = decoded.userId
+            req.userName = decoded.name
+          }
+          next()
+        }
+      )
+    }
+  })

@@ -2,6 +2,6 @@
 
 import handlerCors from 'src/helpers/api/allowCors'
 
-export default handlerCors().post(async (req, res) => {
+export default handlerCors.post(async (req, res) => {
   res.status(200).json({ name: req.body.name })
 })

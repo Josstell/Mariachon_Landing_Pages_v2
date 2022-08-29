@@ -1,9 +1,17 @@
 import handlerCors from 'src/helpers/api/allowCors'
 
 import { callApiGoogleSheet } from 'src/helpers'
+//import NextCors from 'nextjs-cors'
 const { SPREADSHEET_ID_MARIACHON_MARIACHIS, SHEET_ID_MARIACHIS } = process.env
 
-export default handlerCors().post(async (req, res) => {
+export default handlerCors.post(async (req, res) => {
+  // await NextCors(req, res, {
+  //   // Options
+  //   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  //   origin: '*',
+  //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  // })
+
   const options = {
     weekday: 'long',
     year: 'numeric',
@@ -13,16 +21,17 @@ export default handlerCors().post(async (req, res) => {
 
   const date = new Date()
 
-  const mariachiDetails = {
+  let mariachiDetails = {
     fecha_creacion: date.toLocaleDateString('es-MX', options),
     id: req.body?._id,
+    direccion: req.body?.address,
     nombre: req.body?.name || '',
     ciudad: req.body?.city || '',
     cp: req.body?.cp || '',
     estado: req.body?.region || '',
     tel: req.body?.tel || '',
-    description: req.body?.description || '',
-    coordinador: req.body?.coordinator || '',
+    descripcion: req.body?.description || '',
+    coordinador: req.body?.coordinator._ref || '',
     elementos: parseInt(req.body?.members) || 0,
     categoria: req.body?.categorySet[0] || '',
     serenata: req.body?.serenata * 1 || 'no disponible',
@@ -30,6 +39,19 @@ export default handlerCors().post(async (req, res) => {
     contrato: req.body?.contracto * 1 || 'no disponible',
   }
 
+  if (req.body?.modifiedBy) {
+    mariachiDetails = {
+      ...mariachiDetails,
+      modificadoPor: req.body?.modifiedBy?._ref,
+    }
+  }
+
+  if (req.body?.createdBy) {
+    mariachiDetails = {
+      ...mariachiDetails,
+      creadoPor: req.body?.createdBy?._ref,
+    }
+  }
   console.log(mariachiDetails)
 
   const { sheet, sheetGoogle } = await callApiGoogleSheet(
