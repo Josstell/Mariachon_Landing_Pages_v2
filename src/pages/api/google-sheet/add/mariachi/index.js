@@ -12,17 +12,7 @@ export default handlerCors.post(async (req, res) => {
   //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   // })
 
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }
-
-  const date = new Date()
-
   let mariachiDetails = {
-    fecha_creacion: date.toLocaleDateString('es-MX', options),
     id: req.body?._id,
     direccion: req.body?.address,
     nombre: req.body?.name || '',
@@ -43,6 +33,7 @@ export default handlerCors.post(async (req, res) => {
     mariachiDetails = {
       ...mariachiDetails,
       modificadoPor: req.body?.modifiedBy?._ref,
+      fecha_de_modificacion: req.body?.dateModified,
     }
   }
 
@@ -50,6 +41,7 @@ export default handlerCors.post(async (req, res) => {
     mariachiDetails = {
       ...mariachiDetails,
       creadoPor: req.body?.createdBy?._ref,
+      fecha_de_creacion: req.body.dateCreated,
     }
   }
   console.log(mariachiDetails)
