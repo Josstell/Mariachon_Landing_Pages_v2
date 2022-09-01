@@ -1,17 +1,10 @@
 import handlerCors from 'src/helpers/api/allowCors'
 
-import { callApiGoogleSheet } from 'src/helpers'
-//import NextCors from 'nextjs-cors'
-const { SPREADSHEET_ID_MARIACHON_MARIACHIS, SHEET_ID_RESERVAS } = process.env
+import sgMail from '@sendgrid/mail'
+
+sgMail.setApiKey(process.env.API_KEY_SENDING_GRID)
 
 export default handlerCors.post(async (req, res) => {
-  // await NextCors(req, res, {
-  //   // Options
-  //   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  //   origin: '*',
-  //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  // })
-
   const options = {
     weekday: 'long',
     year: 'numeric',
@@ -21,14 +14,17 @@ export default handlerCors.post(async (req, res) => {
 
   //   const date = new Date()
 
+  console.log('Datos que llegan:', req.body)
+
   const date = req.body?.dateAndTime
     ? new Date(req.body?.dateAndTime)
     : new Date()
 
   let reservaDetails = {
-    id: req.body?._id,
+    id: req.body?.reserva,
     clienteId: req.body?.client?._id || '',
     nombre_cliente: req.body?.client?.name || '',
+    email: req.body?.client?.email || '',
     tel: req.body?.client?.tel || '',
     fecha: date.toLocaleDateString('es-MX', options),
     hora: `${date.getHours()} : ${
@@ -45,6 +41,7 @@ export default handlerCors.post(async (req, res) => {
     resta:
       req.body?.orderItems?.price * req.body?.orderItems?.qty -
         req.body?.orderItems?.deposit || 0,
+    subtotal: req.body?.orderItems?.price * req.body?.orderItems?.qty || 0,
     categoria: req.body?.orderItems?.categorySet || 'Normal',
     mensaje: req.body?.message || '',
     status: req.body?.status[0] || 'Pendiente',
@@ -66,44 +63,35 @@ export default handlerCors.post(async (req, res) => {
     }
   }
 
-  const { sheet, sheetGoogle } = await callApiGoogleSheet(
-    SPREADSHEET_ID_MARIACHON_MARIACHIS,
-    SHEET_ID_RESERVAS
-  )
+  const templateEmail = process.env.TEMPLETE_ID_EMAIL_RESERVA
 
-  const isDataAlreadySved = sheetGoogle.find(
-    (row) => row.id === reservaDetails.id
-  )
+  let emailToSend =
+    reservaDetails?.email === ''
+      ? ['informes@mariachon.com', 'xonitg@gmail.com']
+      : ['informes@mariachon.com', 'xonitg@gmail.com', reservaDetails?.email]
 
-  //return res.status(200).json(reservaDetails)
-
-  if (isDataAlreadySved === undefined) {
-    try {
-      await sheet.addRow(reservaDetails)
-      return res.status(200).json({
-        message: ` ${reservaDetails.id} agregada correntamente en google sheet`,
-      })
-    } catch (err) {
-      return res.status(400).json({
-        error: err.message,
-      })
-    }
-  } else {
-    try {
-      const keyObjectMariachi = Object.keys(reservaDetails)
-      const rowData = isDataAlreadySved._rowNumber - 2
-      keyObjectMariachi.forEach(
-        (marKey) => (sheetGoogle[rowData][marKey] = reservaDetails[marKey])
-      )
-      await sheetGoogle[rowData].save() // save changes
-
-      return res.status(200).json({
-        message: ` ${reservaDetails.id} actualizado.`,
-      })
-    } catch (error) {
-      return res.status(400).json({
-        error: error.message,
-      })
-    }
+  const msg = {
+    to: emailToSend, // Change to your recipient
+    from: ` Mariachon - reservación: ${reservaDetails.id} - ${reservaDetails.status} - <informes@mariachon.com>`, // Change to your verified sender
+    // subject: dataSend.subjectDina,
+    html: 'hola',
+    templateId: templateEmail,
+    dynamic_template_data: reservaDetails,
   }
+
+  console.log('Llegamsi: ', reservaDetails)
+
+  sgMail
+    .sendMultiple(msg)
+    .then((dat) => {
+      console.log('correo enviado')
+      res.status(200).json({
+        message: `La información ha sido enviada al correo indicado de forma exitoza, gracias...`,
+        dat,
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(400).json(error)
+    })
 })
