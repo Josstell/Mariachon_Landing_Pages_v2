@@ -14,7 +14,7 @@ export default handlerCors.post(async (req, res) => {
 
   //   const date = new Date()
 
-  console.log('Datos que llegan:', req.body)
+  //console.log('Datos que llegan:', req.body)
 
   const date = req.body?.dateAndTime
     ? new Date(req.body?.dateAndTime)
@@ -33,6 +33,7 @@ export default handlerCors.post(async (req, res) => {
     direccion: req.body?.shippingAddress?.address || '',
     region: req.body?.shippingAddress?.region || '',
     mariachi: req.body?.orderItems?.mariachi?.name || '',
+    elementos: req.body?.orderItems?.mariachi?.members || '',
     servicio: req.body?.orderItems?.service || '',
     qty: req.body?.orderItems?.qty * 1 || 0,
     precio: req.body?.orderItems?.price * 1 || 0,
@@ -78,8 +79,6 @@ export default handlerCors.post(async (req, res) => {
     templateId: templateEmail,
     dynamic_template_data: reservaDetails,
   }
-
-  console.log('Llegamsi: ', reservaDetails)
 
   sgMail
     .sendMultiple(msg)
