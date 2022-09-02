@@ -21,9 +21,6 @@ const region = ({ data, dataS }) => {
     return <div>CARGANDO... </div>
   }
 
-  console.log('Datoslocal: ', data)
-  console.log('DatosSanity: ', dataS)
-
   return (
     <>
       <Head>
