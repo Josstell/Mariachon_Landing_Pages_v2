@@ -68,8 +68,8 @@ export default handlerCors.post(async (req, res) => {
 
   let emailToSend =
     reservaDetails?.email === ''
-      ? ['informes@mariachon.com', 'xonitg@gmail.com']
-      : ['informes@mariachon.com', 'xonitg@gmail.com', reservaDetails?.email]
+      ? ['informes@mariachon.com']
+      : ['informes@mariachon.com', reservaDetails?.email]
 
   const msg = {
     to: emailToSend, // Change to your recipient
