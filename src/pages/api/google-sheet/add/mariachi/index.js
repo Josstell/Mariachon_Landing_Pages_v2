@@ -24,6 +24,7 @@ export default handlerCors.post(async (req, res) => {
     coordinador: req.body?.coordinator._ref || '',
     elementos: parseInt(req.body?.members) || 0,
     categoria: req.body?.categorySet[0] || '',
+    etapa: req.body?.stage[0] || '',
     serenata: req.body?.serenata * 1 || 'no disponible',
     hora: req.body?.hora * 1 || 'no disponible',
     contrato: req.body?.contracto * 1 || 'no disponible',

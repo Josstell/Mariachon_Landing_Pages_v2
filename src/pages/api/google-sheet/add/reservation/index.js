@@ -47,7 +47,7 @@ export default handlerCors.post(async (req, res) => {
         req.body?.orderItems?.deposit || 0,
     categoria: req.body?.orderItems?.categorySet || 'Normal',
     mensaje: req.body?.message || '',
-    status: req.body?.status[0] || 'Pendiente',
+    status: req.body?.status[0] || '',
   }
 
   if (req.body?.modifiedBy) {
@@ -75,7 +75,6 @@ export default handlerCors.post(async (req, res) => {
     (row) => row.id === reservaDetails.id
   )
 
-  console.log(reservaDetails)
   //return res.status(200).json(reservaDetails)
 
   if (isDataAlreadySved === undefined) {
@@ -94,8 +93,6 @@ export default handlerCors.post(async (req, res) => {
     }
   } else {
     try {
-      console.log('actualizar sheet')
-
       const keyObjectMariachi = Object.keys(reservaDetails)
       const rowData = isDataAlreadySved._rowNumber - 2
       keyObjectMariachi.forEach(
@@ -107,7 +104,6 @@ export default handlerCors.post(async (req, res) => {
         message: ` ${reservaDetails.id} actualizado.`,
       })
     } catch (error) {
-      console.log(error)
       return res.status(400).json({
         error: error.message,
       })

@@ -30,6 +30,7 @@ export default handlerCors.post(async (req, res) => {
     email: req.body?.email || '',
     tel: req.body?.tel || '',
     username: req.body?.username || '',
+    etapa: req.body?.stage[0] || '',
     role: req.body?.categorySet.filter((cat) => cat !== null)[0] || '',
   }
 
