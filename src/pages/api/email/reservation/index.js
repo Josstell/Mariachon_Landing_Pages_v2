@@ -46,6 +46,7 @@ export default handlerCors.post(async (req, res) => {
     categoria: req.body?.orderItems?.categorySet || 'Normal',
     mensaje: req.body?.message || '',
     status: req.body?.status[0] || 'Pendiente',
+    message_service: '',
   }
 
   if (req.body?.modifiedBy) {
@@ -61,6 +62,22 @@ export default handlerCors.post(async (req, res) => {
       ...reservaDetails,
       creadoPor: req.body?.createdBy?._ref,
       fecha_de_creacion: req.body.dateCreated,
+    }
+  }
+
+  if (req.body?.orderItems?.service === 'hora') {
+    reservaDetails = {
+      ...reservaDetails,
+      message_service:
+        '1 hora en promedio son 10 - 12 canciones dependiendo la duración de cada una.',
+    }
+  }
+
+  if (req.body?.orderItems?.service === 'serenata') {
+    reservaDetails = {
+      ...reservaDetails,
+      message_service:
+        'Serenata de 7 canciones tiene un tiempo estimado de 20 a 25 minutos.',
     }
   }
 
