@@ -25,9 +25,9 @@ export default handlerCors.post(async (req, res) => {
     elementos: parseInt(req.body?.members) || 0,
     categoria: req.body?.categorySet[0] || '',
     etapa: req.body?.stage[0] || '',
-    serenata: req.body?.serenata * 1 || 'no disponible',
-    hora: req.body?.hora * 1 || 'no disponible',
-    contrato: req.body?.contracto * 1 || 'no disponible',
+    serenata: `R:${req.body?.service?.serenata?.regular||0}, M:${req.body?.service?.serenata?.minimo||0}, F:${req.body?.service?.serenata?.festivo||0} `,
+    hora: `R:${req.body?.service?.hora?.regular||0}, M:${req.body?.service?.hora?.minimo||0}, F:${req.body?.service?.hora?.festivo||0} `,
+    contrato: `R:${req.body?.service?.contrato?.regular||0}, M:${req.body?.service?.contrato?.minimo||0}, F:${req.body?.service?.contrato?.festivo||0} `,
   }
 
   if (req.body?.modifiedBy) {
