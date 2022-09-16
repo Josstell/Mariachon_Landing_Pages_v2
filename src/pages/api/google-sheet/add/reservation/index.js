@@ -40,6 +40,7 @@ export default handlerCors.post(async (req, res) => {
     servicio: req.body?.orderItems?.service || '',
     qty: req.body?.orderItems?.qty * 1 || 0,
     precio: req.body?.orderItems?.price * 1 || 0,
+    tipo_precio: req.body?.orderItems?.priceOptionSelected || '',
     deposito: req.body?.orderItems?.deposit * 1 || 0,
     comision: req.body?.orderItems?.fee * 1 || 0,
     resta:
@@ -99,6 +100,8 @@ export default handlerCors.post(async (req, res) => {
         (marKey) => (sheetGoogle[rowData][marKey] = reservaDetails[marKey])
       )
       await sheetGoogle[rowData].save() // save changes
+
+      console.log('datos guardados sheet')
 
       return res.status(200).json({
         message: ` ${reservaDetails.id} actualizado.`,
