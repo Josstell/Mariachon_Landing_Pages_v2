@@ -31,14 +31,14 @@ export default handlerCors.post(async (req, res) => {
     tel: req.body?.tel || '',
     username: req.body?.username || '',
     etapa: req.body?.stage[0] || '',
-    role: req.body?.categorySet.filter((cat) => cat !== null)[0] || '',
+    role: req.body?.categorySet?.filter((cat) => cat !== null)[0] || '',
   }
 
   if (req.body?.modifiedBy) {
     clienteDetails = {
       ...clienteDetails,
       modificadoPor: req.body?.modifiedBy?._ref,
-      fecha_de_modificacion: req.body?.dateModified,
+      fecha_de_modificacion: req.body?.dateModified || date,
     }
   }
 
@@ -46,7 +46,7 @@ export default handlerCors.post(async (req, res) => {
     clienteDetails = {
       ...clienteDetails,
       creadoPor: req.body?.createdBy?._ref,
-      fecha_de_creacion: req.body.dateCreated,
+      fecha_de_creacion: req.body?.dateCreated || date,
     }
   }
   console.log(clienteDetails)
