@@ -4,7 +4,7 @@ import sgMail from '@sendgrid/mail'
 
 sgMail.setApiKey(process.env.API_KEY_SENDING_GRID)
 
-export default handlerCors.post(async (req, res) => {
+export default handlerCors.post((req, res) => {
   const options = {
     weekday: 'long',
     year: 'numeric',
