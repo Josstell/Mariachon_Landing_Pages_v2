@@ -21,7 +21,7 @@ export default handlerCors.post(async (req, res) => {
 
   const date = new Date()
 
-  console.log(req.body)
+  console.log('client', req.body)
 
   let clienteDetails = {
     fecha_creacion: date.toLocaleDateString('es-MX', options),
@@ -31,7 +31,7 @@ export default handlerCors.post(async (req, res) => {
     tel: req.body?.tel || '',
     username: req.body?.username || '',
     etapa: req.body?.stage[0] !== undefined ? req.body?.stage[0] : '',
-    role: req.body?.categorySet?.filter((cat) => cat !== null)[0] || '',
+    role: req.body?.categorySet?.filter((cat) => !cat === false)[0] || '',
   }
 
   if (req.body?.modifiedBy) {
@@ -49,7 +49,7 @@ export default handlerCors.post(async (req, res) => {
       fecha_de_creacion: req.body?.dateCreated || date,
     }
   }
-  console.log(clienteDetails)
+  console.log('procesado', clienteDetails)
 
   const { sheet, sheetGoogle } = await callApiGoogleSheet(
     SPREADSHEET_ID_MARIACHON_MARIACHIS,

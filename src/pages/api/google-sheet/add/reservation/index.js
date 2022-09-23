@@ -45,7 +45,7 @@ export default handlerCors.post(async (req, res) => {
     comision: req.body?.orderItems?.fee * 1 || 0,
     resta:
       req.body?.orderItems?.price * req.body?.orderItems?.qty -
-        req.body?.orderItems?.deposit || 0,
+      req.body?.orderItems?.deposit,
     categoria: req.body?.orderItems?.categorySet || 'Normal',
     mensaje: req.body?.message || '',
     status: req.body?.status[0] || '',
