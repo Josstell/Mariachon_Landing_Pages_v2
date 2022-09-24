@@ -4,7 +4,7 @@ import { callApiGoogleSheet } from 'src/helpers'
 //import NextCors from 'nextjs-cors'
 const { SPREADSHEET_ID_MARIACHON_MARIACHIS, SHEET_ID_CLIENTES } = process.env
 
-export default handlerCors().post(async (req, res) => {
+export default handlerCors.post(async (req, res) => {
   // await NextCors(req, res, {
   //   // Options
   //   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
