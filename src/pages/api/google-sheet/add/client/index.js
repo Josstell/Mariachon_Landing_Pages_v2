@@ -30,8 +30,8 @@ export default handlerCors.post(async (req, res) => {
     email: req.body?.email || '',
     tel: req.body?.tel || '',
     username: req.body?.username || '',
-    etapa: req.body?.stage[0] !== undefined ? req.body?.stage[0] : '',
-    role: req.body?.categorySet?.filter((cat) => !cat === false)[0] || '',
+    // etapa: req.body?.stage[0] !== undefined ? req.body?.stage[0] : '',
+    // role: req.body?.categorySet?.filter((cat) => !cat === false)[0] || '',
   }
 
   if (req.body?.modifiedBy) {
