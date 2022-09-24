@@ -4,7 +4,7 @@ import { callApiGoogleSheet } from 'src/helpers'
 //import NextCors from 'nextjs-cors'
 const { SPREADSHEET_ID_MARIACHON_MARIACHIS, SHEET_ID_MARIACHIS } = process.env
 
-export default handlerCors.post(async (req, res) => {
+export default handlerCors().post(async (req, res) => {
   // await NextCors(req, res, {
   //   // Options
   //   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
@@ -25,9 +25,15 @@ export default handlerCors.post(async (req, res) => {
     elementos: parseInt(req.body?.members) || 0,
     categoria: req.body?.categorySet[0] || '',
     etapa: req.body?.stage[0] || '',
-    serenata: `R:${req.body?.service?.serenata?.regular||0}, M:${req.body?.service?.serenata?.minimo||0}, F:${req.body?.service?.serenata?.festivo||0} `,
-    hora: `R:${req.body?.service?.hora?.regular||0}, M:${req.body?.service?.hora?.minimo||0}, F:${req.body?.service?.hora?.festivo||0} `,
-    contrato: `R:${req.body?.service?.contrato?.regular||0}, M:${req.body?.service?.contrato?.minimo||0}, F:${req.body?.service?.contrato?.festivo||0} `,
+    serenata: `R:${req.body?.service?.serenata?.regular || 0}, M:${
+      req.body?.service?.serenata?.minimo || 0
+    }, F:${req.body?.service?.serenata?.festivo || 0} `,
+    hora: `R:${req.body?.service?.hora?.regular || 0}, M:${
+      req.body?.service?.hora?.minimo || 0
+    }, F:${req.body?.service?.hora?.festivo || 0} `,
+    contrato: `R:${req.body?.service?.contrato?.regular || 0}, M:${
+      req.body?.service?.contrato?.minimo || 0
+    }, F:${req.body?.service?.contrato?.festivo || 0} `,
   }
 
   if (req.body?.modifiedBy) {
